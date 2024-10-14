@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_flexible/routes/app_router.dart';
+import 'package:flutter_flexible/routes/app_router.gr.dart';
 import 'dart:async';
-import '../../../routes/route_name.dart';
 
 /// APP入口全屏广告页面
 class AdPage extends StatefulWidget {
@@ -35,7 +36,7 @@ class _AdPageState extends State<AdPage> {
       });
       if (timeCount <= 0) {
         _timer?.cancel();
-        Navigator.pushReplacementNamed(context, RouteName.appMain);
+        appRouter.replace(AppMainRoute());
         return;
       }
       timeCount--;
@@ -63,7 +64,7 @@ class _AdPageState extends State<AdPage> {
       right: 20,
       child: InkWell(
         onTap: () {
-          Navigator.pushReplacementNamed(context, RouteName.appMain);
+          appRouter.replace(AppMainRoute());
         },
         child: Container(
           alignment: Alignment.center,

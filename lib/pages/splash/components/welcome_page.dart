@@ -1,5 +1,14 @@
+///
+/// @Author: sineom h.sineom@gmail.com
+/// @Date: 2024-10-10 13:56:49
+/// @LastEditors: sineom h.sineom@gmail.com
+/// @LastEditTime: 2024-10-10 17:40:30
+/// @FilePath: /flutter_flexible/lib/pages/splash/components/welcome_page.dart
+/// @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+///
 import 'package:flutter/material.dart';
-import '../../../routes/route_name.dart';
+import 'package:flutter_flexible/routes/app_router.dart';
+import 'package:flutter_flexible/routes/app_router.gr.dart';
 
 /// 指引页面
 class WelcomePage extends StatefulWidget {
@@ -35,7 +44,7 @@ class _WelcomePageState extends State<WelcomePage> {
         heroTag: 'welcomBtn',
         child: const Icon(Icons.navigate_next),
         onPressed: () {
-          Navigator.pushReplacementNamed(context, RouteName.appMain);
+          appRouter.replace(AppMainRoute());
         },
       ),
     );

@@ -1,23 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-class GlobalStore extends ChangeNotifier {
+part 'global.p.g.dart';
+
+@riverpod
+class GlobalStore extends _$GlobalStore {
   late PageController barTabsController;
-  bool _grayTheme = false;
 
-  /// 保存页面控制器
-  void saveController(PageController barTabsCont) =>
-      barTabsController = barTabsCont;
-
-  /// 获取BarTabs的Controller控制器
-  PageController get getBarTabsCont => barTabsController;
-
-  /// 是否显示灰度模式主题，true为灰度, false显示原有主题颜色
-  bool setGrayTheme([bool flag = false]) {
-    _grayTheme = flag;
-    notifyListeners();
-    return _grayTheme;
+  @override
+  bool build() {
+    return false;
   }
-
-  /// 是否是灰度模式
-  bool get getGrayTheme => _grayTheme;
+  /// 是否显示灰度模式主题，true为灰度, false显示原有主题颜色
+  void setGrayTheme([bool flag = false]) {
+    state = flag;
+  }
 }

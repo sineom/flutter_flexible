@@ -1,13 +1,17 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_flexible/routes/app_router.dart';
+import 'package:flutter_flexible/routes/app_router.gr.dart';
 import '../../constants/cache_constants.dart';
-import '../../routes/route_name.dart';
 import '../../config/app_config.dart' show AppConfig;
 import '../../utils/tool/sp_util.dart';
 import 'components/ad_page.dart';
 import 'components/welcome_page.dart';
 
 /// 闪屏页。
+
+@RoutePage()
 class SplashPage extends StatefulWidget {
   @override
   State<SplashPage> createState() => _SplashPageState();
@@ -45,7 +49,7 @@ class _SplashPageState extends State<SplashPage> {
 
     /// 调试阶段，直接跳过此组件
     if (AppConfig.notSplash && context.mounted) {
-      Navigator.pushReplacementNamed(context, RouteName.appMain);
+      appRouter.push(AppMainRoute());
     }
   }
 

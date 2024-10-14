@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_flexible/routes/app_router.dart';
+import 'package:flutter_flexible/routes/app_router.gr.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../routes/route_name.dart';
 
 class HeadUserBox extends StatefulWidget {
   @override
@@ -16,7 +17,7 @@ class _HeadUserBoxState extends State<HeadUserBox> {
         btnWidget(
           title: "登入/注册",
           onTap: () {
-            Navigator.pushNamed(context, RouteName.login);
+            appRouter.push(LoginRoute());
           },
         ),
       ],

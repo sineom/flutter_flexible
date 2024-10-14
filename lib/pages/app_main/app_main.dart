@@ -1,10 +1,25 @@
-import 'package:ana_page_loop/ana_page_loop.dart';
+///
+/// @Author: sineom h.sineom@gmail.com
+/// @Date: 2024-10-10 13:56:49
+/// @LastEditors: sineom h.sineom@gmail.com
+/// @LastEditTime: 2024-10-10 17:38:42
+/// @FilePath: /flutter_flexible/lib/pages/app_main/app_main.dart
+/// @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+///
+///
+/// @Author: sineom h.sineom@gmail.com
+/// @Date: 2024-10-10 13:56:49
+/// @LastEditors: sineom h.sineom@gmail.com
+/// @LastEditTime: 2024-10-10 15:53:36
+/// @FilePath: /flutter_flexible/lib/pages/app_main/app_main.dart
+/// @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+///
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:jh_debug/jh_debug.dart';
 import 'package:provider/provider.dart';
-import '../../routes/route_name.dart';
 import '../../components/update_app/check_app_version.dart'
     show checkAppVersion;
 import '../../config/app_env.dart' show appEnv, ENV;
@@ -33,28 +48,24 @@ import 'home/home.dart';
 ///   'pageId': 2,
 /// });
 /// ```
-class AppMain extends StatefulWidget {
+
+@RoutePage()
+class AppMainPage extends ConsumerStatefulWidget {
   final dynamic params;
 
-  const AppMain({
-    Key? key,
+  const AppMainPage({
+    super.key,
     this.params,
-  }) : super(key: key);
+  });
 
   @override
-  State<AppMain> createState() => _AppMainState();
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('params', params));
-  }
+  ConsumerState<ConsumerStatefulWidget> createState() => _State();
 }
 
-class _AppMainState extends State<AppMain>
-    with PageViewListenerMixin, AutomaticKeepAliveClientMixin {
+class _State extends ConsumerState<AppMainPage>
+    with AutomaticKeepAliveClientMixin {
   int currentIndex = 0; // 接收bar当前点击索引
   bool physicsFlag = true; // 是否禁止左右滑动跳转tab
-  late GlobalStore appPageStore;
   late PageController pageController;
   @override
   bool get wantKeepAlive => true;
@@ -90,20 +101,8 @@ class _AppMainState extends State<AppMain>
     handleCurrentIndex();
     initTools();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      appPageStore.saveController(pageController);
-
-      if (AppConfig.showJhDebugBtn) {
-        jhDebug.showDebugBtn(); // jhDebug 调试按钮
-      }
 
       checkAppVersion(); // 更新APP版本检查
-
-      /// 调试阶段，直接跳过此组件
-      if (AppConfig.notSplash &&
-          AppConfig.directPageName.isNotEmpty &&
-          AppConfig.directPageName != RouteName.appMain) {
-        Navigator.pushNamed(context, AppConfig.directPageName);
-      }
     });
   }
 
@@ -130,67 +129,16 @@ class _AppMainState extends State<AppMain>
   }
 
   /// 初始化第三方插件插件
-  initTools() {
-    // jhDebug插件初始化
-    jhDebug.init(
-      context: context,
-      btnTitle1: '开发',
-      btnTap1: () {
-        appEnv.setEnv = ENV.DEV;
-        // AppConfig.host = appEnv.baseUrl;
-      },
-      btnTitle2: '调试',
-      btnTap2: () {},
-      btnTitle3: '生产',
-      btnTap3: () {
-        appEnv.setEnv = ENV.PROD;
-        // AppConfig.host = appEnv.baseUrl;
-      },
-    );
-  }
-
-  /// 实现PageViewListenerMixin类上的方法，供页面埋点使用
-  @override
-  PageViewMixinData initPageViewListener() {
-    return PageViewMixinData(
-      controller: pageController,
-      tabsData: appBottomBar.map((data) => data['title'] as String).toList(),
-    );
-  }
-
-  @override
-  void didPopNext() {
-    super.didPopNext();
-  }
-
-  @override
-  // ignore: unnecessary_overrides
-  void didPop() {
-    super.didPop();
-  }
-
-  @override
-  // ignore: unnecessary_overrides
-  void didPush() {
-    super.didPush();
-  }
-
-  @override
-  // ignore: unnecessary_overrides
-  void didPushNext() {
-    super.didPushNext();
-  }
+  initTools() {}
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    appPageStore = Provider.of<GlobalStore>(context);
+    final appPageStore = ref.watch(globalStoreProvider);
 
     return ColorFiltered(
       colorFilter: ColorFilter.mode(
-        appPageStore.getGrayTheme
-            ? const Color(0xff757575)
-            : Colors.transparent,
+        appPageStore ? const Color(0xff757575) : Colors.transparent,
         BlendMode.color,
       ),
       child: _scaffoldBody(),

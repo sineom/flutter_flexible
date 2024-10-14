@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'app_env.dart' show appEnv;
-import '../routes/route_name.dart';
 
 class AppConfig {
   /// 设计稿尺寸 宽750 高1334
@@ -18,9 +17,6 @@ class AppConfig {
 
   /// 是否跳过引导页面
   static const isShowWelcome = false;
-
-  /// 闪屏后跳转的页面（方便调试），需notSplash参数为true才有效果
-  static String directPageName = RouteName.appMain;
 
   /// 是否显示jh_debug浮动按钮
   static const showJhDebugBtn = true;

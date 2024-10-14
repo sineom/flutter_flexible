@@ -1,59 +1,53 @@
+/// 
+/// @Author: sineom h.sineom@gmail.com
+/// @Date: 2024-10-10 13:56:49
+/// @LastEditors: sineom h.sineom@gmail.com
+/// @LastEditTime: 2024-10-12 17:41:22
+/// @FilePath: /flutter_flexible/lib/main.dart
+/// @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+
 import 'package:flutter/material.dart';
-import 'package:flutter_flexible/components/layouts/basic_layout.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:provider/provider.dart';
-import 'package:jh_debug/jh_debug.dart' show DebugMode, jhDebug, jhDebugMain;
-import 'routes/generate_route.dart' show generateRoute;
-import 'routes/routes_data.dart'; // 路由配置
-import 'providers_config.dart' show providersConfig; // providers配置文件
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
+import 'routes/app_router.dart';
 import 'provider/theme_store.p.dart'; // 全局主题
-import 'config/common_config.dart' show commonConfig;
-import 'package:ana_page_loop/ana_page_loop.dart' show anaAllObs;
-import 'utils/app_setup/index.dart' show appSetupInit;
+
+final getIt = GetIt.instance;
 
 void main() {
-  jhDebugMain(
-    appChild: MultiProvider(
-      providers: providersConfig,
-      child: const MyApp(),
-    ),
-    debugMode: DebugMode.inConsole,
-    errorCallback: (details) {},
-  );
+  WidgetsFlutterBinding.ensureInitialized();
+  getIt.registerSingleton<AppRouter>(AppRouter());
+  runApp(const ProviderScope(
+    child: MyApp(),
+  ));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MyApp extends ConsumerWidget {
+  const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    jhDebug.setGlobalKey = commonConfig.getGlobalKey;
-    appSetupInit();
-    WidgetsFlutterBinding.ensureInitialized();
-    return Consumer<ThemeStore>(
-      builder: (context, themeStore, child) {
-        return BasicLayout(
-          child: MaterialApp(
-            navigatorKey: jhDebug.getNavigatorKey,
-            showPerformanceOverlay: false,
-            locale: const Locale('zh', 'CH'),
-            localizationsDelegates: const [
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: const [
-              Locale('zh', 'CH'),
-              Locale('en', 'US'),
-            ],
-            theme: themeStore.getTheme,
-            initialRoute: initialRoute,
-            onGenerateRoute: generateRoute, // 路由处理
-            debugShowCheckedModeBanner: false,
-            navigatorObservers: [...anaAllObs()],
-          ),
-        );
-      },
-    );
+  Widget build(BuildContext context, WidgetRef ref) {
+    final themeStore = ref.watch(themeStoreProvider);
+    return ScreenUtilInit(
+            minTextAdapt: true,
+            splitScreenMode: true,
+            builder: (context, child) => MaterialApp.router(
+                  showPerformanceOverlay: false,
+                  locale: const Locale('zh', 'CH'),
+                  localizationsDelegates: const [
+                    GlobalMaterialLocalizations.delegate,
+                    GlobalWidgetsLocalizations.delegate,
+                    GlobalCupertinoLocalizations.delegate,
+                  ],
+                  supportedLocales: const [
+                    Locale('zh', 'CH'),
+                    Locale('en', 'US'),
+                  ],
+                  theme: themeStore,
+                  debugShowCheckedModeBanner: false,
+                  routerConfig: appRouter.config(),
+                ));
   }
 }

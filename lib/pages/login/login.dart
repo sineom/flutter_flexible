@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'components/basic_btn/basic_btn.dart';
@@ -8,15 +9,16 @@ import '../../utils/tool/user_util.dart';
 import '../../utils/tool/tips_util.dart';
 import '../../utils/index.dart';
 
-class Login extends StatefulWidget {
-  const Login({Key? key, this.params}) : super(key: key);
+@RoutePage()
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key, this.params});
   final dynamic params;
 
   @override
-  State<Login> createState() => _LoginState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginState extends State<Login> {
+class _LoginPageState extends State<LoginPage> {
   FocusNode blankNode = FocusNode(); // 响应空白处的焦点的Node
   final double baseTextSize = 32.sp; // 输入框文字
   final double _slaSize = 26.sp; // 协议文字大小

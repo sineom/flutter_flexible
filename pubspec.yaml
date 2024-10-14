@@ -24,24 +24,46 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  dio: 5.7.0
-  provider: 6.1.2
-  flutter_screenutil: 5.9.3
-  jh_debug: 2.0.1
-  ana_page_loop: ^1.0.1
-  shared_preferences: 2.3.2 # 持久性存储
-  synchronized: 3.2.0
-  ota_update: 6.0.0
-  package_info_plus: 8.0.2 # app相关信息获取
-  url_launcher: 6.3.0
-  permission_handler: 11.3.1 # 权限
-  fluttertoast: 8.2.8
-  device_info_plus: 10.1.2
+  dio: ^5.7.0
+  # 网络请求重试  https://pub.dev/packages/dio_smart_retry
+  dio_smart_retry: ^6.0.0
+  provider: ^6.1.2
+  flutter_screenutil: ^5.9.3
+  shared_preferences: ^2.3.2 # 持久性存储
+  synchronized: ^3.2.0
+  ota_update: ^6.0.0
+  package_info_plus: ^8.0.2 # app相关信息获取
+  url_launcher: ^6.3.0
+  permission_handler: ^11.3.1 # 权限
+  device_info_plus: ^11.0.0
+  # 调试组件  https://pub.dev/packages/logarte
+  logarte: ^0.1.6
+  # 路由  https://pub.dev/packages/auto_route
+  auto_route: ^9.2.2
+  # 依赖注入  https://pub.dev/packages/get_it
+  get_it: ^8.0.0
+  # 启动页  https://pub.dev/packages/flutter_native_splash
+  flutter_native_splash: ^2.4.1
+  # 状态管理  https://pub.dev/packages/flutter_riverpod
+  flutter_riverpod: ^2.5.1
+  # 状态管理  https://pub.dev/packages/hooks_riverpod
+  hooks_riverpod: ^2.5.2
+  # 自定义hooks  https://pub.dev/packages/flutter_hooks
+  flutter_hooks: ^0.20.5
+
+  riverpod_annotation: ^2.3.5
+  moon_design: ^1.0.6
+  
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
+  auto_route_generator: ^9.0.0
+  build_runner:
+  custom_lint:
+  riverpod_generator: ^3.0.0-dev.3
+  riverpod_lint: ^2.3.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -78,3 +100,17 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+targets:
+  $default:
+    builders:
+      auto_route_generator:auto_route_generator: # this for @RoutePage
+        options:
+          enable_cached_builds: true
+        generate_for:
+          - lib/pages/**_page.dart
+      auto_route_generator:auto_router_generator: # this for @AutoRouterConfig
+        options:
+          enable_cached_builds: true
+        generate_for:
+          - lib/routes/app_router.dart
