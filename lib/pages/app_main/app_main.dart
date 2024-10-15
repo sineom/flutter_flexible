@@ -6,48 +6,19 @@
 /// @FilePath: /flutter_flexible/lib/pages/app_main/app_main.dart
 /// @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 ///
-///
-/// @Author: sineom h.sineom@gmail.com
-/// @Date: 2024-10-10 13:56:49
-/// @LastEditors: sineom h.sineom@gmail.com
-/// @LastEditTime: 2024-10-10 15:53:36
-/// @FilePath: /flutter_flexible/lib/pages/app_main/app_main.dart
-/// @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
-///
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
+
+import '../../components/exit_app_interceptor/exit_app_interceptor.dart';
 import '../../components/update_app/check_app_version.dart'
     show checkAppVersion;
-import '../../config/app_env.dart' show appEnv, ENV;
-import '../../config/app_config.dart';
-import '../../components/exit_app_interceptor/exit_app_interceptor.dart';
-import '../../provider/gray_model.p.dart';
+import 'home/home.dart';
+import 'hot/hot.dart';
 import 'my_personal/my_personal.dart';
 import 'search/search.dart';
-import 'hot/hot.dart';
-import 'home/home.dart';
-
-/// [params] 别名路由传递的参数
-/// [params.pageId] 跳转到指定tab页面（0第一页），如果不是别名路由跳转的话，又想实现跳转到指定tab页面，推荐别名路由跳转方式。
-///```dart
-/// // 手动传入参数跳转路由方式如下：
-/// Navigator.of(context).push(
-///   MaterialPageRoute(
-///     builder: (context) => BarTabs(
-///       params: {'pageId': 2}, // 跳转到tabs的第三个页面
-///     ),
-///   )
-/// );
-///
-/// // 别名路由跳转方式如下：
-/// Navigator.pushNamed(context, '/testDemo', arguments: {
-///   'pageId': 2,
-/// });
-/// ```
 
 @RoutePage()
 class AppMainPage extends ConsumerStatefulWidget {
@@ -164,9 +135,9 @@ class _State extends ConsumerState<AppMainPage>
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: currentIndex, // 当前页
-        elevation: 5.0,
-        selectedFontSize: 26.sp, // 选中的字体大小
-        unselectedFontSize: 26.sp, // 未选中的字体大小
+        elevation: 5.r,
+        selectedFontSize: 12.sp, // 选中的字体大小
+        unselectedFontSize: 12.sp, // 未选中的字体大小
         onTap: (int idx) async {
           setState(() {
             currentIndex = idx;
@@ -196,7 +167,7 @@ class _State extends ConsumerState<AppMainPage>
         return BottomNavigationBarItem(
           icon: Icon(
             itemData['icon'] as IconData, // 图标
-            size: 44.sp,
+            size: 22.r,
           ),
           label: itemData['title'] as String,
         );

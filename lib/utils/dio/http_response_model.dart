@@ -1,37 +1,38 @@
-import 'package:dio/dio.dart';
+/// 
+/// @Author: sineom h.sineom@gmail.com
+/// @Date: 2024-10-14 14:05:13
+/// @LastEditors: sineom h.sineom@gmail.com
+/// @LastEditTime: 2024-10-15 16:09:12
+/// @FilePath: /flutter_flexible/lib/utils/dio/http_response_model.dart
+/// @Description:
+/// @
+/// @Copyright (c) 2024 by sineom, All Rights Reserved. 
+ ///
 
-import 'http_parse/i_http_parse.dart';
 
-// Represents the model for HTTP responses.
+/// 表示HTTP响应的模型
 class HttpResponseModel {
-    // The data returned in the HTTP response.
-    dynamic data;
-    
-    // The status code of the HTTP response.
-    int? code;
-    
-    // Any message associated with the HTTP response.
-    String? msg;
+  /// 响应数据
+  final dynamic data;
 
-    // Provides a JSON map representation of the data.
-    Map<String, dynamic> get jsonMap => data ?? {};
+  /// 响应状态码
+  final int? code;
 
-    // Constructor for a successful HTTP response.
-    HttpResponseModel.success(this.data) {
-        code = 200; // Sets the status code to 200 for success.
-    }
+  /// 响应消息
+  final String? msg;
 
-    // Constructor for a failed HTTP response with optional error message and code.
-    HttpResponseModel.failure({String? errorMsg, int? errorCode}) {
-        msg = errorMsg;
-        code = errorCode;
-    }
+  /// JSON映射
+  Map<String, dynamic> get jsonMap => data ?? {};
 
-    // Constructor for a failed HTTP response using data to determine the error message.
-    HttpResponseModel.failureFormResponse({DioException? error}) {
-        msg = handleError(data);
-    }
+  /// 成功响应
+  HttpResponseModel.success(this.data) : code = 200, msg = null;
 
-    // Checks if the response is successful.
-    bool get success => code == 200;
+  /// 失败响应
+  HttpResponseModel.failure({String? errorMsg, int? errorCode})
+      : msg = errorMsg,
+        code = errorCode,
+        data = null;
+
+  /// 检查响应是否成功
+  bool get success => code == 200;
 }

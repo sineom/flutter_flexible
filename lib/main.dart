@@ -26,14 +26,12 @@ Future<void> main() async {
   getIt.registerSingleton<AppRouter>(AppRouter());
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  runApp(ProviderScope(
-    child: EasyLocalization(
-        supportedLocales: const [Locale('en', 'US'), Locale('zh', 'CH')],
-        path:
-            'assets/translations', // <-- change the path of the translation files
-        fallbackLocale: const Locale('en', 'US'),
-        child: const MyApp()),
-  ));
+  runApp(EasyLocalization(
+      supportedLocales: const [Locale('en', 'US'), Locale('zh', 'CH')],
+      path:
+          'assets/translations', // <-- change the path of the translation files
+      fallbackLocale: const Locale('en', 'US'),
+      child: const ProviderScope(child: MyApp())));
 }
 
 class MyApp extends ConsumerWidget {
