@@ -14,11 +14,6 @@ Function debounce(Function fn, [int t = 30]) {
   };
 }
 
-/// 是否是手机号
-bool isPhone(String value) {
-  return RegExp(r"^1(3|4|5|7|8)\d{9}$").hasMatch(value);
-}
-
 /// 版本号比较，version1 大于 version2时返回true
 bool compareVersion(String version1, String version2) {
   num toNum(String vStr) {

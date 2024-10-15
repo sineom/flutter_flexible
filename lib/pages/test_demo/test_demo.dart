@@ -1,36 +1,31 @@
 ///
 /// @Author: sineom h.sineom@gmail.com
-/// @Date: 2024-10-10 13:56:49
+/// @Date: 2024-10-14 11:00:48
 /// @LastEditors: sineom h.sineom@gmail.com
-/// @LastEditTime: 2024-10-14 10:35:55
+/// @LastEditTime: 2024-10-14 17:35:06
 /// @FilePath: /flutter_flexible/lib/pages/test_demo/test_demo.dart
-/// @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
-///
-///
-/// @Author: sineom h.sineom@gmail.com
-/// @Date: 2024-10-10 13:56:49
-/// @LastEditors: sineom h.sineom@gmail.com
-/// @LastEditTime: 2024-10-10 15:47:05
-/// @FilePath: /flutter_flexible/lib/pages/test_demo/test_demo.dart
-/// @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
-///
+/// @Description:
+/// @
+/// @Copyright (c) 2024 by sineom, All Rights Reserved.
 ///
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_flexible/pages/app_main/my_personal/components/set_theme_demo.dart';
+import 'package:flutter_flexible/services/common_repository.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../utils/index.dart';
 
 @RoutePage()
-class TestDemoPage extends StatefulWidget {
+class TestDemoPage extends ConsumerStatefulWidget {
   const TestDemoPage({super.key, this.params});
   final dynamic params;
 
   @override
-  State<TestDemoPage> createState() => _TestDemoPageState();
+  ConsumerState<TestDemoPage> createState() => _TestDemoPageState();
 }
 
-class _TestDemoPageState extends State<TestDemoPage> {
+class _TestDemoPageState extends ConsumerState<TestDemoPage> {
   @override
   void initState() {
     super.initState();
@@ -39,6 +34,7 @@ class _TestDemoPageState extends State<TestDemoPage> {
 
   @override
   Widget build(BuildContext context) {
+    final demo = ref.watch(getDemoProvider.future);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Test页面'),
@@ -53,23 +49,23 @@ class _TestDemoPageState extends State<TestDemoPage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                     Text(
-                          '状态共享值：',
-                          style: const TextStyle(fontSize: 18),
-                        ),
+                      Text(
+                        '状态共享值：',
+                        style: const TextStyle(fontSize: 18),
+                      ),
                       Text(
                         '路由接收参数》》${widget.params}',
                         style: const TextStyle(fontSize: 18),
                       ),
                       _button(
                         '加+',
-                        onPressed: () {
+                        onPressed: () async {
+                          ref.refresh(getDemoProvider.future);
                         },
                       ),
                       _button(
                         '减-',
-                        onPressed: () {
-                        },
+                        onPressed: () {},
                       ),
                     ],
                   ),

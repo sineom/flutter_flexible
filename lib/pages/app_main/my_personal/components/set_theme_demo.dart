@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../provider/theme_store.p.dart';
 import '../../../../constants/themes/index_theme.dart';
-import '../../../../provider/global.p.dart';
+import '../../../../provider/gray_model.p.dart';
 
 class SetThemeDemo extends ConsumerStatefulWidget {
   const SetThemeDemo({super.key});
@@ -24,7 +24,7 @@ class _SetThemeDemoState extends ConsumerState<SetThemeDemo> {
 
   @override
   Widget build(BuildContext context) {
-    appPageStore = ref.watch(globalStoreProvider);
+    appPageStore = ref.watch(grayScaleModelProvider);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -51,7 +51,7 @@ class _SetThemeDemoState extends ConsumerState<SetThemeDemo> {
         style: const TextStyle(fontSize: 22),
       ),
       onPressed: () {
-        ref.read(globalStoreProvider.notifier).setGrayTheme(!appPageStore);
+        ref.read(grayScaleModelProvider.notifier).setGrayTheme(!appPageStore);
       },
     );
   }

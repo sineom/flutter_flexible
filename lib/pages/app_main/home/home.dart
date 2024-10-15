@@ -1,19 +1,19 @@
 ///
 /// @Author: sineom h.sineom@gmail.com
-/// @Date: 2024-10-10 13:56:49
+/// @Date: 2024-10-14 11:00:48
 /// @LastEditors: sineom h.sineom@gmail.com
-/// @LastEditTime: 2024-10-14 10:29:19
+/// @LastEditTime: 2024-10-14 16:24:59
 /// @FilePath: /flutter_flexible/lib/pages/app_main/home/home.dart
-/// @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+/// @Description:
+/// @
+/// @Copyright (c) 2024 by sineom, All Rights Reserved.
 ///
 import 'package:flutter/material.dart';
 import 'package:flutter_flexible/routes/app_router.dart';
 import 'package:flutter_flexible/routes/app_router.gr.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../components/update_app/check_app_version.dart';
 import '../../../config/app_env.dart' show appEnv;
-import 'provider/counterStore.p.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key, this.params}) : super(key: key);

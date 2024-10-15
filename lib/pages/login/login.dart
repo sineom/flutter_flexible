@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:common_utils/common_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'components/basic_btn/basic_btn.dart';
@@ -51,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
 
   // 是否是手机号
   bool inputIsPhone() {
-    if (isPhone(_phoneController.text)) return true;
+    if (RegexUtil.isMobileSimple(_phoneController.text)) return true;
     Tips.info('请输入正确手机号码');
     return false;
   }

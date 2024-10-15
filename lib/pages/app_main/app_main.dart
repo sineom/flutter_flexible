@@ -25,7 +25,7 @@ import '../../components/update_app/check_app_version.dart'
 import '../../config/app_env.dart' show appEnv, ENV;
 import '../../config/app_config.dart';
 import '../../components/exit_app_interceptor/exit_app_interceptor.dart';
-import '../../provider/global.p.dart';
+import '../../provider/gray_model.p.dart';
 import 'my_personal/my_personal.dart';
 import 'search/search.dart';
 import 'hot/hot.dart';
@@ -101,7 +101,6 @@ class _State extends ConsumerState<AppMainPage>
     handleCurrentIndex();
     initTools();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-
       checkAppVersion(); // 更新APP版本检查
     });
   }
@@ -134,15 +133,7 @@ class _State extends ConsumerState<AppMainPage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    final appPageStore = ref.watch(globalStoreProvider);
-
-    return ColorFiltered(
-      colorFilter: ColorFilter.mode(
-        appPageStore ? const Color(0xff757575) : Colors.transparent,
-        BlendMode.color,
-      ),
-      child: _scaffoldBody(),
-    );
+    return _scaffoldBody();
   }
 
   /// 页面Scaffold层组件

@@ -1,10 +1,19 @@
+///
+/// @Author: sineom h.sineom@gmail.com
+/// @Date: 2024-10-10 13:56:49
+/// @LastEditors: sineom h.sineom@gmail.com
+/// @LastEditTime: 2024-10-14 17:34:30
+/// @FilePath: /flutter_flexible/lib/components/update_app/check_app_version.dart
+/// @Description:
+/// @
+/// @Copyright (c) 2024 by sineom, All Rights Reserved.
+///
 import 'package:flutter/foundation.dart';
 import '../../config/app_config.dart' show AppConfig;
 import '../../config/common_config.dart' show commonConfig;
 import '../../utils/index.dart' show SpUtil, compareVersion;
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import '../../services/common_service.dart'; // 接口
 import '../../utils/tool/perm_util.dart';
 import './update_app.dart';
 
@@ -38,51 +47,51 @@ checkAppVersion({int seconds = 60 * 60 * 12, bool forceUpdate = false}) async {
     }
 
     // TODO:获取最新APP版本, 自定义getNewVersion接口获取
-    var resData = await getNewVersion();
+    // var resData = await getNewVersion();
 
-    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    // PackageInfo packageInfo = await PackageInfo.fromPlatform();
     // APP版本号对比检查
-    if (!compareVersion(resData.version, packageInfo.version) && !forceUpdate) {
-      return;
-    }
-    _showFlag = true;
-    // 弹层更新
-    showGeneralDialog(
-      // ignore: use_build_context_synchronously
-      context: commonConfig.getGlobalContext,
-      barrierDismissible: !forceUpdate, // 是否点击其他区域消失
-      barrierLabel: "",
-      barrierColor: Colors.black54, // 遮罩层背景色
-      transitionDuration: const Duration(milliseconds: 150), // 弹出的过渡时长
-      transitionBuilder: (
-        BuildContext context,
-        Animation<double> animation,
-        Animation<double> secondaryAnimation,
-        Widget child,
-      ) {
-        // 显示的动画组件
-        return ScaleTransition(
-          scale: Tween<double>(begin: 0, end: 1).animate(animation),
-          child: child,
-        );
-      },
-      pageBuilder: (context, animation, secondaryAnimation) {
-        return Dialog(
-          backgroundColor: Colors.transparent, // 背景颜色
-          child: UpdateAppVersion(
-            // TODO: 传入新版本APP相关参数、版本号、更新内容、下载地址等
-            version: resData.version, // 版本号
-            info: (resData.info).cast<String>(), // 更新内容介绍
-            // ios是苹果应用商店地址
-            iosUrl: 'itms-apps://itunes.apple.com/cn/app/id414478124?mt=8',
-            androidUrl:
-                'https://b6.market.xiaomi.com/download/AppStore/08fee50a2945783f419a5945f8e89707f2640c6b0/com.ss.android.ugc.aweme.apk',
-          ),
-        );
-      },
-    ).then((v) {
-      _showFlag = false;
-    });
+    // if (!compareVersion(resData.version, packageInfo.version) && !forceUpdate) {
+    //   return;
+    // }
+    // _showFlag = true;
+    // // 弹层更新
+    // showGeneralDialog(
+    //   // ignore: use_build_context_synchronously
+    //   context: commonConfig.getGlobalContext,
+    //   barrierDismissible: !forceUpdate, // 是否点击其他区域消失
+    //   barrierLabel: "",
+    //   barrierColor: Colors.black54, // 遮罩层背景色
+    //   transitionDuration: const Duration(milliseconds: 150), // 弹出的过渡时长
+    //   transitionBuilder: (
+    //     BuildContext context,
+    //     Animation<double> animation,
+    //     Animation<double> secondaryAnimation,
+    //     Widget child,
+    //   ) {
+    //     // 显示的动画组件
+    //     return ScaleTransition(
+    //       scale: Tween<double>(begin: 0, end: 1).animate(animation),
+    //       child: child,
+    //     );
+    //   },
+    //   pageBuilder: (context, animation, secondaryAnimation) {
+    //     return Dialog(
+    //       backgroundColor: Colors.transparent, // 背景颜色
+    //       child: UpdateAppVersion(
+    //         // TODO: 传入新版本APP相关参数、版本号、更新内容、下载地址等
+    //         version: resData.version, // 版本号
+    //         info: (resData.info).cast<String>(), // 更新内容介绍
+    //         // ios是苹果应用商店地址
+    //         iosUrl: 'itms-apps://itunes.apple.com/cn/app/id414478124?mt=8',
+    //         androidUrl:
+    //             'https://b6.market.xiaomi.com/download/AppStore/08fee50a2945783f419a5945f8e89707f2640c6b0/com.ss.android.ugc.aweme.apk',
+    //       ),
+    //     );
+    //   },
+    // ).then((v) {
+    //   _showFlag = false;
+    // });
 
     await SpUtil.setData(spKey, newTime.toString());
   } catch (e) {

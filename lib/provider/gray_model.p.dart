@@ -1,12 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'global.p.g.dart';
+part 'gray_model.p.g.dart';
 
 @riverpod
-class GlobalStore extends _$GlobalStore {
-  late PageController barTabsController;
-
+class GrayScaleModel extends _$GrayScaleModel {
   @override
   bool build() {
     return false;
