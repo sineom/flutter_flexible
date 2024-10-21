@@ -2,6 +2,16 @@
 /// @Author: sineom h.sineom@gmail.com
 /// @Date: 2024-10-14 11:00:48
 /// @LastEditors: sineom h.sineom@gmail.com
+/// @LastEditTime: 2024-10-21 10:58:36
+/// @FilePath: /flutter_flexible/lib/pages/test_demo/test_demo.dart
+/// @Description:
+/// @
+/// @Copyright (c) 2024 by sineom, All Rights Reserved.
+///
+///
+/// @Author: sineom h.sineom@gmail.com
+/// @Date: 2024-10-14 11:00:48
+/// @LastEditors: sineom h.sineom@gmail.com
 /// @LastEditTime: 2024-10-14 17:35:06
 /// @FilePath: /flutter_flexible/lib/pages/test_demo/test_demo.dart
 /// @Description:
@@ -10,7 +20,7 @@
 ///
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_flexible/pages/app_main/my_personal/components/set_theme_demo.dart';
+import 'package:flutter_flexible/pages/app_main/my/components/set_theme_demo.dart';
 import 'package:flutter_flexible/services/common_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

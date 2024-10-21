@@ -16,9 +16,9 @@ import '../../components/exit_app_interceptor/exit_app_interceptor.dart';
 import '../../components/update_app/check_app_version.dart'
     show checkAppVersion;
 import 'home/home.dart';
-import 'hot/hot.dart';
-import 'my_personal/my_personal.dart';
-import 'search/search.dart';
+import 'msg/hot.dart';
+import 'my/my_personal.dart';
+import 'trade/search.dart';
 
 @RoutePage()
 class AppMainPage extends ConsumerStatefulWidget {
