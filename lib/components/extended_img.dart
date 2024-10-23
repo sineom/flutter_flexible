@@ -76,6 +76,38 @@ class ExtendedImg extends StatelessWidget {
     this.color,
   });
 
+  const ExtendedImg.asset({
+     super.key,
+    required this.imageUrl,
+    this.sourceType = ImageSourceType.asset,
+    this.width,
+    this.height,
+    this.fit = BoxFit.cover,
+    this.borderRadius,
+    this.cache = true,
+    this.loadingPlaceholder,
+    this.loadingPlaceholderAsset,
+    this.errorPlaceholder,
+    this.errorPlaceholderAsset,
+    this.color,
+  });
+
+  const ExtendedImg.file({
+     super.key,
+    required this.imageUrl,
+    this.sourceType = ImageSourceType.file,
+    this.width,
+    this.height,
+    this.fit = BoxFit.cover,
+    this.borderRadius,
+    this.cache = true,
+    this.loadingPlaceholder,
+    this.loadingPlaceholderAsset,
+    this.errorPlaceholder,
+    this.errorPlaceholderAsset,
+    this.color,
+  });
+
   @override
   Widget build(BuildContext context) {
     return ClipRRect(

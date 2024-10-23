@@ -2,6 +2,16 @@
 /// @Author: sineom h.sineom@gmail.com
 /// @Date: 2024-10-14 11:00:48
 /// @LastEditors: sineom h.sineom@gmail.com
+/// @LastEditTime: 2024-10-23 11:30:31
+/// @FilePath: /flutter_flexible/lib/pages/app_main/home/home.dart
+/// @Description:
+/// @
+/// @Copyright (c) 2024 by sineom, All Rights Reserved.
+///
+///
+/// @Author: sineom h.sineom@gmail.com
+/// @Date: 2024-10-14 11:00:48
+/// @LastEditors: sineom h.sineom@gmail.com
 /// @LastEditTime: 2024-10-14 16:24:59
 /// @FilePath: /flutter_flexible/lib/pages/app_main/home/home.dart
 /// @Description:
@@ -12,7 +22,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_flexible/routes/app_router.dart';
 import 'package:flutter_flexible/routes/app_router.gr.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../components/update_app/check_app_version.dart';
 import '../../../config/app_env.dart' show appEnv;
 
 class Home extends StatefulWidget {
@@ -71,9 +80,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
             ),
             _button(
               '强制更新App',
-              onPressed: () {
-                checkAppVersion(forceUpdate: true);
-              },
+              onPressed: () {},
             ),
           ],
         );

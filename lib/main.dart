@@ -16,6 +16,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get_it/get_it.dart';
+import 'package:moon_design/moon_design.dart';
 import 'provider/gray_model.p.dart';
 import 'routes/app_router.dart';
 import 'provider/theme_store.p.dart'; // 全局主题
@@ -45,7 +46,6 @@ class MyApp extends ConsumerWidget {
     return ScreenUtilInit(
       minTextAdapt: true,
       splitScreenMode: true,
-    
       builder: (context, child) {
         // 使用 ShaderMask 来实现灰度效果
         Widget appContent = MaterialApp.router(
@@ -61,9 +61,10 @@ class MyApp extends ConsumerWidget {
             Locale('en', 'US'),
           ],
           builder: FlutterSmartDialog.init(),
-          theme: themeStore,
+          theme: getTheme(themeStore),
           debugShowCheckedModeBanner: false,
-          routerConfig: appRouter.config(navigatorObservers:()=> [FlutterSmartDialog.observer]),
+          routerConfig: appRouter.config(
+              navigatorObservers: () => [FlutterSmartDialog.observer]),
         );
 
         // 如果启用灰度模式，则应用 ShaderMask
@@ -81,7 +82,31 @@ class MyApp extends ConsumerWidget {
 
         return appContent;
       },
-      
+    );
+  }
+
+  /// 加载主题
+  ThemeData getTheme(ThemeData themeData) {
+     final lightTokens = MoonTokens.light.copyWith(
+      colors: MoonColors.light.copyWith(
+        piccolo: themeData.primaryColor,
+        textPrimary: themeData.primaryColor,
+        textSecondary: const Color(0xFF1D2129),
+        iconPrimary: themeData.primaryColor,
+        gohan: const Color(0xFF86909C),
+      ),
+      typography: MoonTypography.typography.copyWith(
+        heading: MoonTypography.typography.heading.apply(
+          // Using variable font and bumping down the font weight compared to the
+          // baseline 600 for heading.
+          fontFamily: "DMSans",
+          fontWeightDelta: -1,
+          fontVariations: [const FontVariation('wght', 500)],
+        ),
+      ),
+    );
+    return ThemeData.light().copyWith(
+      extensions: <ThemeExtension<dynamic>>[MoonTheme(tokens: lightTokens)],
     );
   }
 }

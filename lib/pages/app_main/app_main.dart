@@ -9,16 +9,20 @@
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_flexible/components/extended_img.dart';
+import 'package:flutter_flexible/generated/assets.dart';
+import 'package:flutter_flexible/utils/tool/log_util.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
 import '../../components/exit_app_interceptor/exit_app_interceptor.dart';
-import '../../components/update_app/check_app_version.dart'
-    show checkAppVersion;
 import 'home/home.dart';
 import 'msg/hot.dart';
 import 'my/my_personal.dart';
+import 'product_release/product_release.dart';
 import 'trade/search.dart';
+import 'package:moon_design/moon_design.dart';
 
 @RoutePage()
 class AppMainPage extends ConsumerStatefulWidget {
@@ -45,22 +49,26 @@ class _State extends ConsumerState<AppMainPage>
   final List<Map<String, dynamic>> appBottomBar = [
     {
       'title': '首页',
-      'icon': Icons.home,
+      'icon': Assets.imagesIconHomeNormal,
+      'selectedIcon': Assets.imagesIconHomeSelected,
       'body': const Home(),
     },
     {
-      'title': '热门',
-      'icon': Icons.whatshot,
+      'title': '消息',
+      'icon': Assets.imagesIconMsgNormal,
+      'selectedIcon': Assets.imagesIconMsgSelected,
       'body': const Hot(),
     },
     {
-      'title': '搜索',
-      'icon': Icons.search,
+      'title': '交易',
+      'icon': Assets.imagesIconTradeNormal,
+      'selectedIcon': Assets.imagesIconTradeSelected,
       'body': Search(),
     },
     {
       'title': '我的',
-      'icon': Icons.person,
+      'icon': Assets.imagesIconMyNormal,
+      'selectedIcon': Assets.imagesIconMySelected,
       'body': MyPersonal(),
     },
   ];
@@ -71,9 +79,6 @@ class _State extends ConsumerState<AppMainPage>
 
     handleCurrentIndex();
     initTools();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      checkAppVersion(); // 更新APP版本检查
-    });
   }
 
   @override
@@ -130,21 +135,32 @@ class _State extends ConsumerState<AppMainPage>
           ),
         ],
       ),
+      floatingActionButton: GestureDetector(
+        onTap: () {
+          SmartDialog.show(builder: (ctx) => const ProductRelease(),alignment: Alignment.bottomCenter,);
+        },
+        child: ExtendedImg.asset(
+          imageUrl: Assets.imagesIconAddNormal,
+          width: 42.r,
+          height: 42.r,
+        ),
+      ),
+      // 设置 floatingActionButton 在底部导航栏中间
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
 
       // 底部栏
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: currentIndex, // 当前页
-        elevation: 5.r,
-        selectedFontSize: 12.sp, // 选中的字体大小
-        unselectedFontSize: 12.sp, // 未选中的字体大小
-        onTap: (int idx) async {
-          setState(() {
-            currentIndex = idx;
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.white,
+        shape: const CircularNotchedRectangle(),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: _generateBottomBars(onTap: (index) {
+             setState(() {
+            currentIndex = index;
           });
-          pageController.jumpToPage(idx); // 跳转
-        },
-        items: _generateBottomBars(), // 底部菜单导航
+          pageController.jumpToPage(index); // 跳转
+          }),
+        ),
       ),
     );
   }
@@ -161,19 +177,30 @@ class _State extends ConsumerState<AppMainPage>
   }
 
   /// 生成底部菜单导航
-  List<BottomNavigationBarItem> _generateBottomBars() {
-    try {
-      return appBottomBar.map<BottomNavigationBarItem>((itemData) {
-        return BottomNavigationBarItem(
-          icon: Icon(
-            itemData['icon'] as IconData, // 图标
-            size: 22.r,
-          ),
-          label: itemData['title'] as String,
-        );
-      }).toList();
-    } catch (e) {
-      throw Exception('appBottomBar数据缺少参数、或字段类型不匹配, errorMsg:$e');
-    }
+  List<Widget> _generateBottomBars({required ValueChanged<int> onTap}) {
+    // 使用 List.generate 确保正确获取索引
+    final List<Widget> items = List.generate(appBottomBar.length, (index) {
+      final item = appBottomBar[index];
+      return InkWell(
+        onTap: () => onTap(index), // 点击事件
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ExtendedImg(
+              imageUrl: currentIndex == index ? item['selectedIcon'] : item['icon'], // 图标路径
+              width: 24.r,
+              height: 24.r,
+              sourceType: ImageSourceType.asset,
+            ),
+            Text(item['title'],style: TextStyle(fontSize: 11.sp,color: currentIndex == index ? context.moonColors!.textSecondary : context.moonColors!.gohan),), // 标题文字
+          ],
+        ),
+      );
+    });
+
+    // 在第三个位置插入一个空的 SizedBox 用于布局
+    items.insert(2, const SizedBox());
+
+    return items;
   }
 }
