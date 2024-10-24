@@ -1,20 +1,22 @@
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_flexible/generated/assets.dart';
+import 'package:flutter_flexible/routes/app_router.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moon_design/moon_design.dart';
 
 import '../../../components/dialog/dialog_utils.dart';
+import '../../../routes/app_router.gr.dart';
 
-class ProductRelease extends StatelessWidget {
-  const ProductRelease({super.key});
+class ProductType extends StatelessWidget {
+  const ProductType({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Material(
       color: Colors.white,
-            borderRadius: BorderRadius.horizontal(
-                left: Radius.circular(16.r), right: Radius.circular(16.r)),
+      borderRadius: BorderRadius.horizontal(
+          left: Radius.circular(16.r), right: Radius.circular(16.r)),
       child: Padding(
         padding: EdgeInsets.all(40.r),
         child: Column(
@@ -36,7 +38,9 @@ class ProductRelease extends StatelessWidget {
                 _ReleaseItem(
                     title: "出售信息",
                     icon: Assets.imagesIconSellRelease,
-                    onTap: () {}),
+                    onTap: () {
+                      appRouter.push(const PorductPublishSellRoute());
+                    }),
                 _ReleaseItem(
                     title: "求购信息",
                     icon: Assets.imagesIconAskBuyRelease,
@@ -82,7 +86,10 @@ class _ReleaseItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () {
+        onTap.call();
+        DialogUtils.dismiss();
+      },
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

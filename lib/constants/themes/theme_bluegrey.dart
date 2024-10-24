@@ -2,7 +2,7 @@ part of 'index_theme.dart';
 
 final ThemeData themeBlueGrey = ThemeData(
   brightness: Brightness.light,
-  primaryColor: const Color(0xff607d8b), // 导航bar背景色
+  primaryColor: const Color(0xff0256FF), // 导航bar背景色
   primaryColorLight: const Color(0xffcfd8dc),
   primaryColorDark: const Color(0xff455a64),
   canvasColor: const Color(0xfffafafa),
@@ -446,6 +446,6 @@ final ThemeData themeBlueGrey = ThemeData(
   bottomAppBarTheme: const BottomAppBarTheme(color: Color(0xffffffff)),
   // 设置顶部AppBar的底色
   appBarTheme: const AppBarTheme(
-    color: Colors.blueGrey,
+    color: Colors.white,
   ),
 );

@@ -11,10 +11,10 @@ enum ImageSourceType { network, asset, file }
 /// 扩展图片加载组件，支持多种图片资源类型，并允许自定义占位图（Widget 或资源路径）、缓存和颜色设置
 class ExtendedImg extends StatelessWidget {
   /// 图片的来源地址
-  final String imageUrl;
+  final String? imageUrl;
 
   /// 图片的来源类型，默认是网络图片
-  final ImageSourceType sourceType;
+  final ImageSourceType? sourceType;
 
   /// 图片的宽度
   final double? width;
@@ -46,6 +46,9 @@ class ExtendedImg extends StatelessWidget {
   /// 图片的颜色叠加，例如颜色过滤
   final Color? color;
 
+  /// The image to display.
+  final ImageProvider? image;
+
   /// 构造函数，初始化 ExtendedImg 组件
   ///
   /// [imageUrl] 必填，图片的地址
@@ -74,10 +77,11 @@ class ExtendedImg extends StatelessWidget {
     this.errorPlaceholder,
     this.errorPlaceholderAsset,
     this.color,
+    this.image,
   });
 
   const ExtendedImg.asset({
-     super.key,
+    super.key,
     required this.imageUrl,
     this.sourceType = ImageSourceType.asset,
     this.width,
@@ -90,10 +94,11 @@ class ExtendedImg extends StatelessWidget {
     this.errorPlaceholder,
     this.errorPlaceholderAsset,
     this.color,
+    this.image,
   });
 
   const ExtendedImg.file({
-     super.key,
+    super.key,
     required this.imageUrl,
     this.sourceType = ImageSourceType.file,
     this.width,
@@ -106,6 +111,7 @@ class ExtendedImg extends StatelessWidget {
     this.errorPlaceholder,
     this.errorPlaceholderAsset,
     this.color,
+    this.image,
   });
 
   @override
@@ -118,10 +124,23 @@ class ExtendedImg extends StatelessWidget {
 
   /// 根据图片来源类型构建不同的图片加载方法
   Widget _buildImage() {
+    if (image != null) {
+      return ExtendedImage(
+        image: image!,
+        width: width,
+        height: height,
+        fit: fit,
+        enableMemoryCache: cache,
+        clearMemoryCacheWhenDispose: true,
+        color: color,
+        clearMemoryCacheIfFailed: true,
+        loadStateChanged: _loadStateChanged,
+      );
+    }
     switch (sourceType) {
       case ImageSourceType.network:
         return ExtendedImage.network(
-          imageUrl,
+          imageUrl!,
           width: width,
           height: height,
           fit: fit,
@@ -133,7 +152,7 @@ class ExtendedImg extends StatelessWidget {
         );
       case ImageSourceType.asset:
         return ExtendedImage.asset(
-          imageUrl,
+          imageUrl!,
           width: width,
           height: height,
           fit: fit,
@@ -144,7 +163,7 @@ class ExtendedImg extends StatelessWidget {
         );
       case ImageSourceType.file:
         return ExtendedImage.file(
-          File(imageUrl),
+          File(imageUrl!),
           width: width,
           height: height,
           fit: fit,

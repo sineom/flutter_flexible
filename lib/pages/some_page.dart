@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../components/extended_img.dart';
+import '../components/image/extended_img.dart';
 
 class SomePage extends StatelessWidget {
   @override

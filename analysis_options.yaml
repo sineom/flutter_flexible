@@ -12,6 +12,7 @@ include: package:flutter_lints/flutter.yaml
 analyzer:
   errors:
     file_names: ignore
+    invalid_annotation_target: ignore
   exclude: [build/**, asset/**]
   language:
     strict-raw-types: true

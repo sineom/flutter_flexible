@@ -2,22 +2,13 @@
 /// @Author: sineom h.sineom@gmail.com
 /// @Date: 2024-10-15 11:12:10
 /// @LastEditors: sineom h.sineom@gmail.com
-/// @LastEditTime: 2024-10-15 14:28:06
+/// @LastEditTime: 2024-10-24 14:25:36
 /// @FilePath: /flutter_flexible/lib/provider/dio.p.dart
 /// @Description:
 /// @
 /// @Copyright (c) 2024 by sineom, All Rights Reserved.
 ///
-///
-/// @Author: sineom h.sineom@gmail.com
-/// @Date: 2024-10-15 11:12:10
-/// @LastEditors: sineom h.sineom@gmail.com
-/// @LastEditTime: 2024-10-15 11:29:01
-/// @FilePath: /flutter_flexible/lib/provider/dio.p.dart
-/// @Description:
-/// @
-/// @Copyright (c) 2024 by sineom, All Rights Reserved.
-///
+
 import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

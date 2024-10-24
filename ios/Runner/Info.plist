@@ -47,5 +47,7 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSPhotoLibraryUsageDescription</key>
+<string>APP需要您的同意，才能访问相册，以便于图片选取、上传、发布</string>
 </dict>
 </plist>

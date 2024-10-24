@@ -9,9 +9,8 @@
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_flexible/components/extended_img.dart';
+import 'package:flutter_flexible/components/image/extended_img.dart';
 import 'package:flutter_flexible/generated/assets.dart';
-import 'package:flutter_flexible/utils/tool/log_util.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
@@ -20,7 +19,7 @@ import '../../components/exit_app_interceptor/exit_app_interceptor.dart';
 import 'home/home.dart';
 import 'msg/hot.dart';
 import 'my/my_personal.dart';
-import 'product_release/product_release.dart';
+import 'product_publish/product_type.dart';
 import 'trade/search.dart';
 import 'package:moon_design/moon_design.dart';
 
@@ -137,7 +136,10 @@ class _State extends ConsumerState<AppMainPage>
       ),
       floatingActionButton: GestureDetector(
         onTap: () {
-          SmartDialog.show(builder: (ctx) => const ProductRelease(),alignment: Alignment.bottomCenter,);
+          SmartDialog.show(
+            builder: (ctx) => const ProductType(),
+            alignment: Alignment.bottomCenter,
+          );
         },
         child: ExtendedImg.asset(
           imageUrl: Assets.imagesIconAddNormal,
@@ -152,13 +154,15 @@ class _State extends ConsumerState<AppMainPage>
       bottomNavigationBar: BottomAppBar(
         color: Colors.white,
         shape: const CircularNotchedRectangle(),
+        padding: EdgeInsets.zero,
+        height: 48.h,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: _generateBottomBars(onTap: (index) {
-             setState(() {
-            currentIndex = index;
-          });
-          pageController.jumpToPage(index); // 跳转
+            setState(() {
+              currentIndex = index;
+            });
+            pageController.jumpToPage(index); // 跳转
           }),
         ),
       ),
@@ -187,12 +191,21 @@ class _State extends ConsumerState<AppMainPage>
           mainAxisSize: MainAxisSize.min,
           children: [
             ExtendedImg(
-              imageUrl: currentIndex == index ? item['selectedIcon'] : item['icon'], // 图标路径
+              imageUrl: currentIndex == index
+                  ? item['selectedIcon']
+                  : item['icon'], // 图标路径
               width: 24.r,
               height: 24.r,
               sourceType: ImageSourceType.asset,
             ),
-            Text(item['title'],style: TextStyle(fontSize: 11.sp,color: currentIndex == index ? context.moonColors!.textSecondary : context.moonColors!.gohan),), // 标题文字
+            Text(
+              item['title'],
+              style: TextStyle(
+                  fontSize: 11.sp,
+                  color: currentIndex == index
+                      ? context.moonColors!.textSecondary
+                      : context.moonColors!.gohan),
+            ), // 标题文字
           ],
         ),
       );

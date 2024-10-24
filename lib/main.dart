@@ -2,7 +2,7 @@
 /// @Author: sineom h.sineom@gmail.com
 /// @Date: 2024-10-14 11:00:48
 /// @LastEditors: sineom h.sineom@gmail.com
-/// @LastEditTime: 2024-10-14 11:17:31
+/// @LastEditTime: 2024-10-24 17:11:07
 /// @FilePath: /flutter_flexible/lib/main.dart
 /// @Description:
 /// @
@@ -46,6 +46,7 @@ class MyApp extends ConsumerWidget {
     return ScreenUtilInit(
       minTextAdapt: true,
       splitScreenMode: true,
+      designSize: const Size(376, 812),
       builder: (context, child) {
         // 使用 ShaderMask 来实现灰度效果
         Widget appContent = MaterialApp.router(
@@ -87,25 +88,19 @@ class MyApp extends ConsumerWidget {
 
   /// 加载主题
   ThemeData getTheme(ThemeData themeData) {
-     final lightTokens = MoonTokens.light.copyWith(
+    final lightTokens = MoonTokens.light.copyWith(
       colors: MoonColors.light.copyWith(
         piccolo: themeData.primaryColor,
         textPrimary: themeData.primaryColor,
         textSecondary: const Color(0xFF1D2129),
         iconPrimary: themeData.primaryColor,
-        gohan: const Color(0xFF86909C),
-      ),
-      typography: MoonTypography.typography.copyWith(
-        heading: MoonTypography.typography.heading.apply(
-          // Using variable font and bumping down the font weight compared to the
-          // baseline 600 for heading.
-          fontFamily: "DMSans",
-          fontWeightDelta: -1,
-          fontVariations: [const FontVariation('wght', 500)],
-        ),
+        gohan: const Color(0xFFF7F8FA),
+        frieza: const Color(0xffC9CDD4),
+        frieza10: const Color(0xffF7F8FA),
+        frieza60: const Color(0xFF86909C),
       ),
     );
-    return ThemeData.light().copyWith(
+    return themeData.copyWith(
       extensions: <ThemeExtension<dynamic>>[MoonTheme(tokens: lightTokens)],
     );
   }
