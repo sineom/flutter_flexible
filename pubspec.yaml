@@ -71,6 +71,8 @@ dependencies:
   json_annotation: ^4.9.0
   # 组件库  https://pub.dev/packages/tdesign_flutter
   tdesign_flutter: ^0.1.7
+  # 国家国旗  https://pub.dev/packages/country_flags
+  country_flags: ^3.0.0
 
 
 dev_dependencies:

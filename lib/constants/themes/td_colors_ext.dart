@@ -2,7 +2,7 @@
 /// @Author: sineom h.sineom@gmail.com
 /// @Date: 2024-10-25 14:29:38
 /// @LastEditors: sineom h.sineom@gmail.com
-/// @LastEditTime: 2024-10-25 16:26:14
+/// @LastEditTime: 2024-10-25 17:51:49
 /// @FilePath: /flutter_flexible/lib/constants/themes/td_colors_ext.dart
 /// @Description:
 /// @
@@ -44,4 +44,7 @@ extension TDColorsExt on TDThemeData {
 
   /// #C9CDD4
   Color get grayColor16 => colorMap['grayColor16'] ?? const Color(0xFFC9CDD4);
+
+  /// #3370FF
+  Color get brandColor11 => colorMap['brandColor11'] ?? const Color(0xFF3370FF);
 }

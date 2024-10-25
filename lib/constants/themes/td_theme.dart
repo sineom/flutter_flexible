@@ -2,7 +2,7 @@
 /// @Author: sineom h.sineom@gmail.com
 /// @Date: 2024-10-25 10:47:03
 /// @LastEditors: sineom h.sineom@gmail.com
-/// @LastEditTime: 2024-10-25 16:25:56
+/// @LastEditTime: 2024-10-25 17:51:33
 /// @FilePath: /flutter_flexible/lib/constants/themes/td_theme.dart
 /// @Description: 主题配置
 /// @
@@ -53,6 +53,7 @@ String tdTheme = '''
             "brandColor8": "#0038b6",
             "brandColor9": "#002686",
             "brandColor10": "#00185c",
+            "brandColor11": "#3370FF",
             "warningColor1": "#fef3e6",
             "warningColor2": "#f9e0c7",
             "warningColor3": "#f7c797",

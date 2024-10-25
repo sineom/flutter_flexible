@@ -6,6 +6,10 @@ class Assets {
   /// assets/fonts/EyeIcon.ttf
   static const String fontsEyeIcon = "assets/fonts/EyeIcon.ttf";
 
+  /// Assets for imagesEmpty
+  /// assets/images/empty.png
+  static const String imagesEmpty = "assets/images/empty.png";
+
   /// Assets for imagesIconAddNormal
   /// assets/images/icon/add_normal.png
   static const String imagesIconAddNormal = "assets/images/icon/add_normal.png";
@@ -25,6 +29,10 @@ class Assets {
   /// Assets for imagesIconHomeSelected
   /// assets/images/icon/home_selected.png
   static const String imagesIconHomeSelected = "assets/images/icon/home_selected.png";
+
+  /// Assets for imagesIconHomeTopBg
+  /// assets/images/icon/homeTopBg.png
+  static const String imagesIconHomeTopBg = "assets/images/icon/homeTopBg.png";
 
   /// Assets for imagesIconMsgNormal
   /// assets/images/icon/msg_normal.png
