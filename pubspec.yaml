@@ -51,8 +51,6 @@ dependencies:
   # 自定义hooks  https://pub.dev/packages/flutter_hooks
   flutter_hooks: ^0.20.5
   riverpod_annotation: ^2.3.5
-  # UI组件  https://pub.dev/packages/moon_design
-  moon_design: ^1.0.6
   # 日志  https://pub.dev/packages/logger
   logger: ^2.4.0
   # 生成唯一标识符  https://pub.dev/packages/uuid
@@ -68,9 +66,11 @@ dependencies:
   # 图片  https://pub.dev/packages/extended_image
   extended_image: ^8.3.1
   # 图片预览  https://pub.dev/packages/photo_view
-  photo_view: ^0.15.0
+  photo_view: ^0.14.0
   freezed_annotation: ^2.4.4
   json_annotation: ^4.9.0
+  # 组件库  https://pub.dev/packages/tdesign_flutter
+  tdesign_flutter: ^0.1.7
 
 
 dev_dependencies:

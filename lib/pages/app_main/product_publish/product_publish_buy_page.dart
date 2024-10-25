@@ -1,43 +1,28 @@
-///
-/// @Author: sineom h.sineom@gmail.com
-/// @Date: 2024-10-23 16:45:49
-/// @LastEditors: sineom h.sineom@gmail.com
-/// @LastEditTime: 2024-10-25 15:31:06
-/// @FilePath: /flutter_flexible/lib/pages/app_main/product_publish/porduct_publish_sell_page.dart
-/// @Description:出售商品的发布
-/// @
-/// @Copyright (c) 2024 by sineom, All Rights Reserved.
-///
-import 'package:auto_route/auto_route.dart';
+import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_flexible/components/common_appbar.dart';
+import 'package:flutter_flexible/components/dialog/dialog_utils.dart';
 import 'package:flutter_flexible/constants/themes/td_colors_ext.dart';
-import 'package:flutter_flexible/pages/app_main/home/home.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tdesign_flutter/tdesign_flutter.dart';
-import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 
-import '../../../components/index.dart';
+import '../../../components/common_appbar.dart';
 import 'component/dialog_attr_selection.dart';
 import 'component/dialog_species_selection.dart';
-import 'component/product_image_component.dart';
-import 'provider/product_publish.p.dart';
 
 @RoutePage()
-class ProductPublishSellPage extends StatefulWidget {
-  const ProductPublishSellPage({super.key});
+class ProductPublishBuyPage extends StatefulWidget {
+  const ProductPublishBuyPage({super.key});
 
   @override
-  State<ProductPublishSellPage> createState() => _ProductPublishSellPageState();
+  State<ProductPublishBuyPage> createState() => _ProductPublishBuyPageState();
 }
 
-class _ProductPublishSellPageState extends State<ProductPublishSellPage> {
+class _ProductPublishBuyPageState extends State<ProductPublishBuyPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CommonAppbar(
-        title: "出售商品",
+        title: "求购商品",
       ),
       body: Padding(
         padding: EdgeInsets.all(12.r),
@@ -48,7 +33,39 @@ class _ProductPublishSellPageState extends State<ProductPublishSellPage> {
                 children: [
                   _productCategory(),
                   _productDescription(),
-                  const ProductImageComponent("sell"),
+                  TDInput(
+                    required: true,
+                    leftLabel: "数量",
+                    hintText: "请输入数量",
+                    contentAlignment: TextAlign.end,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8.r),
+                    ),
+                    showBottomDivider: false,
+                    rightBtn: Icon(Icons.arrow_forward_ios,
+                        size: 14.sp,
+                        color: TDTheme.of(context).fontBlackColor1),
+                    onChanged: (value) {},
+                  ),
+                  SizedBox(
+                    height: 12.h,
+                  ),
+                  TDInput(
+                    required: true,
+                    leftLabel: "单价(RMB）",
+                    hintText: "请输入单价",
+                    contentAlignment: TextAlign.end,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8.r),
+                    ),
+                    showBottomDivider: false,
+                    rightBtn: Icon(Icons.arrow_forward_ios,
+                        size: 14.sp,
+                        color: TDTheme.of(context).fontBlackColor1),
+                    onChanged: (value) {},
+                  ),
                 ],
               ),
             ),
@@ -57,10 +74,9 @@ class _ProductPublishSellPageState extends State<ProductPublishSellPage> {
               color: Colors.white,
               child: TDButton(
                 text: "发布",
-                type: TDButtonType.fill,
+                isBlock: true,
                 shape: TDButtonShape.circle,
                 theme: TDButtonTheme.primary,
-                isBlock: true,
                 onTap: () {},
               ),
             )
@@ -141,7 +157,7 @@ class _ProductPublishSellPageState extends State<ProductPublishSellPage> {
             height: 8.h,
           ),
           TDTextarea(
-            maxLines: 4,
+            maxLines: 20,
             minLines: 4,
             maxLength: 1000,
             hintText: "请描述商品具体信息",
@@ -153,7 +169,7 @@ class _ProductPublishSellPageState extends State<ProductPublishSellPage> {
                 fontSize: 14.sp,
                 color: TDTheme.of(context).fontBlackColor10,
                 fontWeight: FontWeight.bold),
-            indicator: true,
+            indicator: false,
             layout: TDTextareaLayout.vertical,
             onChanged: (value) {
               setState(() {});

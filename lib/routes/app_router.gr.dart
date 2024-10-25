@@ -8,23 +8,27 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i7;
-import 'package:flutter/material.dart' as _i8;
+import 'package:auto_route/auto_route.dart' as _i9;
+import 'package:flutter/material.dart' as _i10;
 import 'package:flutter_flexible/pages/app_main/app_main.dart' as _i1;
 import 'package:flutter_flexible/pages/app_main/product_publish/porduct_publish_sell_page.dart'
+    as _i5;
+import 'package:flutter_flexible/pages/app_main/product_publish/product_publish_buy_page.dart'
     as _i4;
+import 'package:flutter_flexible/pages/app_main/product_publish/product_publish_trade_page.dart'
+    as _i6;
 import 'package:flutter_flexible/pages/error_page/error_page.dart' as _i2;
 import 'package:flutter_flexible/pages/login/login.dart' as _i3;
-import 'package:flutter_flexible/pages/splash/splash.dart' as _i5;
-import 'package:flutter_flexible/pages/test_demo/test_demo.dart' as _i6;
+import 'package:flutter_flexible/pages/splash/splash.dart' as _i7;
+import 'package:flutter_flexible/pages/test_demo/test_demo.dart' as _i8;
 
 /// generated route for
 /// [_i1.AppMainPage]
-class AppMainRoute extends _i7.PageRouteInfo<AppMainRouteArgs> {
+class AppMainRoute extends _i9.PageRouteInfo<AppMainRouteArgs> {
   AppMainRoute({
-    _i8.Key? key,
+    _i10.Key? key,
     dynamic params,
-    List<_i7.PageRouteInfo>? children,
+    List<_i9.PageRouteInfo>? children,
   }) : super(
           AppMainRoute.name,
           args: AppMainRouteArgs(
@@ -36,7 +40,7 @@ class AppMainRoute extends _i7.PageRouteInfo<AppMainRouteArgs> {
 
   static const String name = 'AppMainRoute';
 
-  static _i7.PageInfo page = _i7.PageInfo(
+  static _i9.PageInfo page = _i9.PageInfo(
     name,
     builder: (data) {
       final args =
@@ -55,7 +59,7 @@ class AppMainRouteArgs {
     this.params,
   });
 
-  final _i8.Key? key;
+  final _i10.Key? key;
 
   final dynamic params;
 
@@ -67,13 +71,13 @@ class AppMainRouteArgs {
 
 /// generated route for
 /// [_i2.ErrorPage]
-class ErrorRoute extends _i7.PageRouteInfo<ErrorRouteArgs> {
+class ErrorRoute extends _i9.PageRouteInfo<ErrorRouteArgs> {
   ErrorRoute({
-    _i8.Key? key,
+    _i10.Key? key,
     dynamic params,
     String? title,
     String? errorText,
-    List<_i7.PageRouteInfo>? children,
+    List<_i9.PageRouteInfo>? children,
   }) : super(
           ErrorRoute.name,
           args: ErrorRouteArgs(
@@ -87,7 +91,7 @@ class ErrorRoute extends _i7.PageRouteInfo<ErrorRouteArgs> {
 
   static const String name = 'ErrorRoute';
 
-  static _i7.PageInfo page = _i7.PageInfo(
+  static _i9.PageInfo page = _i9.PageInfo(
     name,
     builder: (data) {
       final args =
@@ -110,7 +114,7 @@ class ErrorRouteArgs {
     this.errorText,
   });
 
-  final _i8.Key? key;
+  final _i10.Key? key;
 
   final dynamic params;
 
@@ -126,11 +130,11 @@ class ErrorRouteArgs {
 
 /// generated route for
 /// [_i3.LoginPage]
-class LoginRoute extends _i7.PageRouteInfo<LoginRouteArgs> {
+class LoginRoute extends _i9.PageRouteInfo<LoginRouteArgs> {
   LoginRoute({
-    _i8.Key? key,
+    _i10.Key? key,
     dynamic params,
-    List<_i7.PageRouteInfo>? children,
+    List<_i9.PageRouteInfo>? children,
   }) : super(
           LoginRoute.name,
           args: LoginRouteArgs(
@@ -142,7 +146,7 @@ class LoginRoute extends _i7.PageRouteInfo<LoginRouteArgs> {
 
   static const String name = 'LoginRoute';
 
-  static _i7.PageInfo page = _i7.PageInfo(
+  static _i9.PageInfo page = _i9.PageInfo(
     name,
     builder: (data) {
       final args =
@@ -161,7 +165,7 @@ class LoginRouteArgs {
     this.params,
   });
 
-  final _i8.Key? key;
+  final _i10.Key? key;
 
   final dynamic params;
 
@@ -172,28 +176,66 @@ class LoginRouteArgs {
 }
 
 /// generated route for
-/// [_i4.PorductPublishSellPage]
-class PorductPublishSellRoute extends _i7.PageRouteInfo<void> {
-  const PorductPublishSellRoute({List<_i7.PageRouteInfo>? children})
+/// [_i4.ProductPublishBuyPage]
+class ProductPublishBuyRoute extends _i9.PageRouteInfo<void> {
+  const ProductPublishBuyRoute({List<_i9.PageRouteInfo>? children})
       : super(
-          PorductPublishSellRoute.name,
+          ProductPublishBuyRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'PorductPublishSellRoute';
+  static const String name = 'ProductPublishBuyRoute';
 
-  static _i7.PageInfo page = _i7.PageInfo(
+  static _i9.PageInfo page = _i9.PageInfo(
     name,
     builder: (data) {
-      return const _i4.PorductPublishSellPage();
+      return const _i4.ProductPublishBuyPage();
     },
   );
 }
 
 /// generated route for
-/// [_i5.SplashPage]
-class SplashRoute extends _i7.PageRouteInfo<void> {
-  const SplashRoute({List<_i7.PageRouteInfo>? children})
+/// [_i5.ProductPublishSellPage]
+class ProductPublishSellRoute extends _i9.PageRouteInfo<void> {
+  const ProductPublishSellRoute({List<_i9.PageRouteInfo>? children})
+      : super(
+          ProductPublishSellRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ProductPublishSellRoute';
+
+  static _i9.PageInfo page = _i9.PageInfo(
+    name,
+    builder: (data) {
+      return const _i5.ProductPublishSellPage();
+    },
+  );
+}
+
+/// generated route for
+/// [_i6.ProductPublishTradePage]
+class ProductPublishTradeRoute extends _i9.PageRouteInfo<void> {
+  const ProductPublishTradeRoute({List<_i9.PageRouteInfo>? children})
+      : super(
+          ProductPublishTradeRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ProductPublishTradeRoute';
+
+  static _i9.PageInfo page = _i9.PageInfo(
+    name,
+    builder: (data) {
+      return const _i6.ProductPublishTradePage();
+    },
+  );
+}
+
+/// generated route for
+/// [_i7.SplashPage]
+class SplashRoute extends _i9.PageRouteInfo<void> {
+  const SplashRoute({List<_i9.PageRouteInfo>? children})
       : super(
           SplashRoute.name,
           initialChildren: children,
@@ -201,21 +243,21 @@ class SplashRoute extends _i7.PageRouteInfo<void> {
 
   static const String name = 'SplashRoute';
 
-  static _i7.PageInfo page = _i7.PageInfo(
+  static _i9.PageInfo page = _i9.PageInfo(
     name,
     builder: (data) {
-      return _i5.SplashPage();
+      return _i7.SplashPage();
     },
   );
 }
 
 /// generated route for
-/// [_i6.TestDemoPage]
-class TestDemoRoute extends _i7.PageRouteInfo<TestDemoRouteArgs> {
+/// [_i8.TestDemoPage]
+class TestDemoRoute extends _i9.PageRouteInfo<TestDemoRouteArgs> {
   TestDemoRoute({
-    _i8.Key? key,
+    _i10.Key? key,
     dynamic params,
-    List<_i7.PageRouteInfo>? children,
+    List<_i9.PageRouteInfo>? children,
   }) : super(
           TestDemoRoute.name,
           args: TestDemoRouteArgs(
@@ -227,12 +269,12 @@ class TestDemoRoute extends _i7.PageRouteInfo<TestDemoRouteArgs> {
 
   static const String name = 'TestDemoRoute';
 
-  static _i7.PageInfo page = _i7.PageInfo(
+  static _i9.PageInfo page = _i9.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<TestDemoRouteArgs>(
           orElse: () => const TestDemoRouteArgs());
-      return _i6.TestDemoPage(
+      return _i8.TestDemoPage(
         key: args.key,
         params: args.params,
       );
@@ -246,7 +288,7 @@ class TestDemoRouteArgs {
     this.params,
   });
 
-  final _i8.Key? key;
+  final _i10.Key? key;
 
   final dynamic params;
 

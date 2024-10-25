@@ -2,7 +2,7 @@
 /// @Author: sineom h.sineom@gmail.com
 /// @Date: 2024-10-14 11:00:48
 /// @LastEditors: sineom h.sineom@gmail.com
-/// @LastEditTime: 2024-10-23 17:35:47
+/// @LastEditTime: 2024-10-25 16:13:57
 /// @FilePath: /flutter_flexible/lib/routes/app_router.dart
 /// @Description:
 /// @
@@ -31,6 +31,8 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: AppMainRoute.page),
         AutoRoute(page: LoginRoute.page),
         AutoRoute(page: ErrorRoute.page),
-        AutoRoute(page: PorductPublishSellRoute.page),
+        AutoRoute(page: ProductPublishSellRoute.page),
+        AutoRoute(page: ProductPublishBuyRoute.page),
+        AutoRoute(page: ProductPublishTradeRoute.page),
       ];
 }

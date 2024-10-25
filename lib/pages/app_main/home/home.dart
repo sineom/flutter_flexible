@@ -2,7 +2,7 @@
 /// @Author: sineom h.sineom@gmail.com
 /// @Date: 2024-10-14 11:00:48
 /// @LastEditors: sineom h.sineom@gmail.com
-/// @LastEditTime: 2024-10-23 11:30:31
+/// @LastEditTime: 2024-10-25 14:43:33
 /// @FilePath: /flutter_flexible/lib/pages/app_main/home/home.dart
 /// @Description:
 /// @
@@ -19,11 +19,9 @@
 /// @Copyright (c) 2024 by sineom, All Rights Reserved.
 ///
 import 'package:flutter/material.dart';
-import 'package:flutter_flexible/routes/app_router.dart';
-import 'package:flutter_flexible/routes/app_router.gr.dart';
+import 'package:flutter_flexible/constants/themes/td_colors_ext.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../config/app_env.dart' show appEnv;
-import 'package:moon_design/moon_design.dart';
+import 'package:tdesign_flutter/tdesign_flutter.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key, this.params});
@@ -74,23 +72,27 @@ class _HomeState extends State<Home>
                         style: TextStyle(
                             fontSize: 18.sp,
                             fontWeight: FontWeight.w600,
-                            color: context.moonColors!.textPrimary),
+                            color: TDTheme.of(context).brandColor7),
                       ),
                       TextSpan(
                           text: "Market",
                           style: TextStyle(
                               fontSize: 18.sp,
                               fontWeight: FontWeight.w600,
-                              color: context.moonColors!.textSecondary)),
+                              color: TDTheme.of(context).fontBlackColor10)),
                     ])),
                     const Spacer(),
-                    MoonTextButton(
+                    TDButton(
+                      type: TDButtonType.text,
                       onTap: () {},
-                      leading: Icon(
-                        Icons.location_on,
+                      iconWidget: Icon(
+                        Icons.location_on_rounded,
                         size: 24.sp,
                       ),
-                      label: Text("English"),
+                      text: "English",
+                      textStyle: TextStyle(
+                          fontSize: 16.sp,
+                          color: TDTheme.of(context).fontBlackColor10),
                     ),
                     SizedBox(
                       height: 10.h,
@@ -99,17 +101,20 @@ class _HomeState extends State<Home>
                 ),
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: MoonTabBar(
-                    tabController: _tabController,
+                  child: TDTabBar(
+                    controller: _tabController,
+                    isScrollable: true,
+                    indicatorColor: TDTheme.of(context).brandColor7,
+                    showIndicator: true,
+                    labelColor: TDTheme.of(context).fontBlackColor10,
+                    unselectedLabelColor: TDTheme.of(context).fontBlackColor11,
+                    labelStyle:
+                        TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
+                    unselectedLabelStyle:
+                        TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
                     tabs: tabs
-                        .map((e) => MoonTab(
-                              label: Text(
-                                e,
-                                style: TextStyle(
-                                    fontSize: 16.sp,
-                                    color: context.moonColors!.textSecondary,
-                                    fontWeight: FontWeight.bold),
-                              ),
+                        .map((e) => TDTab(
+                              text: e,
                             ))
                         .toList(),
                   ),
@@ -118,51 +123,6 @@ class _HomeState extends State<Home>
             ),
           )
         ],
-      ),
-    );
-  }
-
-  Widget contextWidget() {
-    return ListView(
-      children: List.generate(1, (index) {
-        return Column(
-          children: <Widget>[
-            Text('App渠道：${appEnv.getAppChannel()}'),
-            _button(
-              '跳转test页',
-              onPressed: () {
-                appRouter
-                    .push(TestDemoRoute(params: const {'data': '别名路由传参666'}));
-              },
-            ),
-            Text('状态管理值：'),
-            _button(
-              '加+',
-              onPressed: () {},
-            ),
-            _button(
-              '减-',
-              onPressed: () {},
-            ),
-            _button(
-              '强制更新App',
-              onPressed: () {},
-            ),
-          ],
-        );
-      }),
-    );
-  }
-
-  Widget _button(String text, {VoidCallback? onPressed}) {
-    return Container(
-      margin: const EdgeInsets.only(top: 10),
-      child: ElevatedButton(
-        onPressed: onPressed,
-        child: Text(
-          text,
-          style: TextStyle(fontSize: 22.sp),
-        ),
       ),
     );
   }

@@ -1,9 +1,10 @@
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_flexible/constants/themes/td_colors_ext.dart';
 import 'package:flutter_flexible/generated/assets.dart';
 import 'package:flutter_flexible/routes/app_router.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:moon_design/moon_design.dart';
+import 'package:tdesign_flutter/tdesign_flutter.dart';
 
 import '../../../components/dialog/dialog_utils.dart';
 import '../../../routes/app_router.gr.dart';
@@ -25,9 +26,9 @@ class ProductType extends StatelessWidget {
             Text(
               '产品发布',
               style: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 16.sp,
                   fontWeight: FontWeight.w600,
-                  color: context.moonColors!.textSecondary),
+                  color: TDTheme.of(context).fontBlackColor10),
             ),
             SizedBox(
               height: 40.h,
@@ -39,23 +40,29 @@ class ProductType extends StatelessWidget {
                     title: "出售信息",
                     icon: Assets.imagesIconSellRelease,
                     onTap: () {
-                      appRouter.push(const PorductPublishSellRoute());
+                      appRouter.push(const ProductPublishSellRoute());
                     }),
                 _ReleaseItem(
                     title: "求购信息",
                     icon: Assets.imagesIconAskBuyRelease,
-                    onTap: () {}),
+                    onTap: () {
+                      appRouter.push(const ProductPublishBuyRoute());
+                    }),
                 _ReleaseItem(
                     title: "交易商品",
                     icon: Assets.imagesIconTradeRelease,
-                    onTap: () {}),
+                    onTap: () {
+                      appRouter.push(const ProductPublishTradeRoute());
+                    }),
               ],
             ),
             SizedBox(
               height: 72.h,
             ),
-            MoonButton.icon(
-              icon: ExtendedImage.asset(
+            TDButton(
+              type: TDButtonType.text,
+              size: TDButtonSize.large,
+              iconWidget: ExtendedImage.asset(
                 Assets.imagesIconAddSelected,
                 width: 42.r,
                 height: 42.r,
@@ -104,7 +111,9 @@ class _ReleaseItem extends StatelessWidget {
           Text(
             title,
             style: TextStyle(
-                fontSize: 14.sp, color: context.moonColors!.textSecondary),
+                fontSize: 14.sp,
+                color: TDTheme.of(context).fontBlackColor10,
+                fontWeight: FontWeight.normal),
           ),
         ],
       ),

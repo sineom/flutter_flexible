@@ -2,7 +2,7 @@
 /// @Author: sineom h.sineom@gmail.com
 /// @Date: 2024-10-24 17:28:53
 /// @LastEditors: sineom h.sineom@gmail.com
-/// @LastEditTime: 2024-10-24 18:58:10
+/// @LastEditTime: 2024-10-25 15:01:11
 /// @FilePath: /flutter_flexible/lib/pages/app_main/product_publish/component/dialog_species_selection.dart
 /// @Description:
 /// @
@@ -10,11 +10,14 @@
 ///
 import 'package:flutter/material.dart';
 import 'package:flutter_flexible/components/index.dart';
+import 'package:flutter_flexible/constants/themes/td_colors_ext.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:moon_design/moon_design.dart';
+import 'package:tdesign_flutter/tdesign_flutter.dart';
 
 class DialogSpeciesSelection extends StatefulWidget {
-  const DialogSpeciesSelection({super.key});
+  const DialogSpeciesSelection({super.key, this.hasNext = false});
+
+  final bool hasNext;
 
   @override
   State<DialogSpeciesSelection> createState() => _DialogSpeciesSelectionState();
@@ -37,7 +40,7 @@ class _DialogSpeciesSelectionState extends State<DialogSpeciesSelection> {
                   child: Text(
                     "请选择品类/品牌/系列等商品信息",
                     style: TextStyle(
-                      color: context.moonColors!.textSecondary,
+                      color: TDTheme.of(context).fontBlackColor10,
                       fontSize: 14.sp,
                       fontWeight: FontWeight.bold,
                     ),
@@ -62,12 +65,13 @@ class _DialogSpeciesSelectionState extends State<DialogSpeciesSelection> {
                 padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  color: context.moonColors!.frieza10,
+                  color: TDTheme.of(context).grayColor15,
                   borderRadius: BorderRadius.circular(4.r),
                 ),
                 child: Text("品类$index",
                     style: TextStyle(
-                      color: context.moonColors!.textSecondary,
+                      color: TDTheme.of(context).fontBlackColor10,
+                      fontWeight: FontWeight.normal,
                       fontSize: 13.sp,
                     )),
               ),
@@ -85,7 +89,7 @@ class _DialogSpeciesSelectionState extends State<DialogSpeciesSelection> {
                 Container(
                   width: 94.w,
                   height: double.infinity,
-                  color: context.moonColors!.gohan,
+                  color: TDTheme.of(context).grayColor6,
                   child: MediaQuery.removePadding(
                     context: context,
                     removeTop: true,
@@ -97,7 +101,8 @@ class _DialogSpeciesSelectionState extends State<DialogSpeciesSelection> {
                         child: Text("品牌$index",
                             style: TextStyle(
                               fontSize: 13.sp,
-                              color: context.moonColors!.textSecondary,
+                              fontWeight: FontWeight.normal,
+                              color: TDTheme.of(context).fontBlackColor10,
                             )),
                       ),
                       shrinkWrap: true,
@@ -109,7 +114,7 @@ class _DialogSpeciesSelectionState extends State<DialogSpeciesSelection> {
                   child: Container(
                     height: double.infinity,
                     width: double.infinity,
-                    color: context.moonColors!.goku,
+                    color: Colors.white,
                     child: MediaQuery.removePadding(
                       context: context,
                       removeTop: true,
@@ -126,12 +131,14 @@ class _DialogSpeciesSelectionState extends State<DialogSpeciesSelection> {
                                 child: Text("类目$index",
                                     style: TextStyle(
                                       fontSize: 13.sp,
-                                      color: context.moonColors!.textSecondary,
+                                      fontWeight: FontWeight.normal,
+                                      color:
+                                          TDTheme.of(context).fontBlackColor10,
                                     )),
                               ),
                               Icon(
                                 Icons.check,
-                                color: context.moonColors!.piccolo,
+                                color: TDTheme.of(context).brandColor7,
                                 size: 22.r,
                               )
                             ],
@@ -142,6 +149,35 @@ class _DialogSpeciesSelectionState extends State<DialogSpeciesSelection> {
                     ),
                   ),
                 ),
+              ],
+            ),
+          ),
+          Container(
+            color: Colors.white,
+            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+            child: Row(
+              children: [
+                Expanded(
+                  child: TDButton(
+                    isBlock: true,
+                    shape: TDButtonShape.circle,
+                    type: TDButtonType.fill,
+                    text: "重置",
+                    onTap: () {},
+                  ),
+                ),
+                SizedBox(
+                  width: 16.w,
+                ),
+                Expanded(
+                    child: TDButton(
+                  isBlock: true,
+                  type: TDButtonType.fill,
+                  shape: TDButtonShape.circle,
+                  theme: TDButtonTheme.primary,
+                  text: widget.hasNext ? "下一步" : "确定",
+                  onTap: () {},
+                )),
               ],
             ),
           )

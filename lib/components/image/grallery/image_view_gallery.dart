@@ -2,10 +2,12 @@ import 'dart:io';
 
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_flexible/components/common_appbar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:moon_design/moon_design.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
+import 'package:tdesign_flutter/tdesign_flutter.dart';
+import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 
 import '../extended_img.dart';
 import 'gallery_item.m.dart';
@@ -57,45 +59,59 @@ class _ImageViewGalleryState extends State<ImageViewGallery> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        decoration: widget.backgroundDecoration,
-        constraints: BoxConstraints.expand(
-          height: MediaQuery.of(context).size.height,
-        ),
-        child: Stack(
-          alignment: Alignment.bottomRight,
-          children: <Widget>[
-            PhotoViewGallery.builder(
-              scrollPhysics: const BouncingScrollPhysics(),
-              builder: _buildItem,
-              itemCount: widget.galleryItems.length,
-              loadingBuilder: widget.loadingBuilder ??
-                  (context, event) => Center(
-                        child: SizedBox(
-                          width: 20.w,
-                          height: 20.w,
-                          child: const MoonCircularLoader(circularLoaderSize: MoonCircularLoaderSize.sm,),
-                        ),
-                      ),
-              backgroundDecoration: widget.backgroundDecoration,
-              pageController: widget.pageController,
-              onPageChanged: onPageChanged,
-              scrollDirection: widget.scrollDirection,
+    return Container(
+      color: Colors.black,
+      child: Stack(
+        children: [
+          Container(
+            width: double.infinity,
+            height: double.infinity,
+            decoration: widget.backgroundDecoration,
+            constraints: BoxConstraints.expand(
+              height: MediaQuery.of(context).size.height,
             ),
-            Container(
-              padding:  EdgeInsets.all(20.r),
-              child: Text(
-                "${currentIndex + 1}/${widget.galleryItems.length}",
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 17.0,
-                  decoration: null,
+            child: Stack(
+              alignment: Alignment.bottomRight,
+              children: <Widget>[
+                PhotoViewGallery.builder(
+                  scrollPhysics: const BouncingScrollPhysics(),
+                  builder: _buildItem,
+                  itemCount: widget.galleryItems.length,
+                  loadingBuilder: widget.loadingBuilder ??
+                      (context, event) => Center(
+                            child: SizedBox(
+                              width: 20.w,
+                              height: 20.w,
+                              child: const TDLoading(
+                                size: TDLoadingSize.medium,
+                              ),
+                            ),
+                          ),
+                  backgroundDecoration: widget.backgroundDecoration,
+                  pageController: widget.pageController,
+                  onPageChanged: onPageChanged,
+                  scrollDirection: widget.scrollDirection,
                 ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 100.h,
+            child: CommonAppbar(
+              titleWidget: Text(
+                "${currentIndex + 1}/${widget.galleryItems.length}",
+                style: TextStyle(color: Colors.white, fontSize: 18.sp),
               ),
-            )
-          ],
-        ),
+              backgroundColor: Colors.transparent,
+              leading: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }
@@ -103,24 +119,28 @@ class _ImageViewGalleryState extends State<ImageViewGallery> {
   PhotoViewGalleryPageOptions _buildItem(BuildContext context, int index) {
     final GalleryItem item = widget.galleryItems[index];
     return PhotoViewGalleryPageOptions(
-            imageProvider: getImageProvider(item),
-            initialScale: PhotoViewComputedScale.contained,
-            minScale: PhotoViewComputedScale.contained * (0.5 + index / 10),
-            maxScale: PhotoViewComputedScale.covered * 4.1,
-            heroAttributes: PhotoViewHeroAttributes(tag: item.id),
-          );
+      imageProvider: getImageProvider(item),
+      initialScale: PhotoViewComputedScale.contained,
+      minScale: PhotoViewComputedScale.contained * (0.5 + index / 10),
+      maxScale: PhotoViewComputedScale.covered * 4.1,
+      heroAttributes: PhotoViewHeroAttributes(tag: item.id),
+    );
   }
 
   /// 根据图片的类型获取不同的图片提供者
   ImageProvider getImageProvider(GalleryItem item) {
+    if (item.asset != null) {
+      return AssetEntityImageProvider(item.asset!);
+    }
+    if (item.resource == null) {
+      throw Exception("图片资源不存在");
+    }
     if (item.imageType == ImageSourceType.network) {
-      return ExtendedNetworkImageProvider(item.resource);
+      return ExtendedNetworkImageProvider(item.resource!);
     } else if (item.imageType == ImageSourceType.asset) {
-      return AssetImage(item.resource);
+      return AssetImage(item.resource!);
     } else {
-      return ExtendedFileImageProvider(File(item.resource));
+      return ExtendedFileImageProvider(File(item.resource!));
     }
   }
 }
-
-

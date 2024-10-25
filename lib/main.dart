@@ -2,7 +2,7 @@
 /// @Author: sineom h.sineom@gmail.com
 /// @Date: 2024-10-14 11:00:48
 /// @LastEditors: sineom h.sineom@gmail.com
-/// @LastEditTime: 2024-10-24 17:11:07
+/// @LastEditTime: 2024-10-25 13:47:32
 /// @FilePath: /flutter_flexible/lib/main.dart
 /// @Description:
 /// @
@@ -16,7 +16,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get_it/get_it.dart';
-import 'package:moon_design/moon_design.dart';
+import 'package:tdesign_flutter/tdesign_flutter.dart';
+import 'constants/themes/td_theme.dart';
 import 'provider/gray_model.p.dart';
 import 'routes/app_router.dart';
 import 'provider/theme_store.p.dart'; // 全局主题
@@ -35,13 +36,29 @@ Future<void> main() async {
       child: const ProviderScope(child: MyApp())));
 }
 
-class MyApp extends ConsumerWidget {
+class MyApp extends ConsumerStatefulWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _MyAppState();
+}
+
+class _MyAppState extends ConsumerState<MyApp> {
+  late TDThemeData _themeData;
+  Locale? locale = const Locale('zh');
+
+  @override
+  void initState() {
+    super.initState();
+    _themeData = TDThemeData.fromJson("default", tdTheme)!;
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final themeStore = ref.watch(themeStoreProvider);
     final isGrayScaleMode = ref.watch(grayScaleModelProvider);
+    // 使用多套主题
+    TDTheme.needMultiTheme();
 
     return ScreenUtilInit(
       minTextAdapt: true,
@@ -62,7 +79,8 @@ class MyApp extends ConsumerWidget {
             Locale('en', 'US'),
           ],
           builder: FlutterSmartDialog.init(),
-          theme: getTheme(themeStore),
+          theme: themeStore.copyWith(
+              extensions: [_themeData]),
           debugShowCheckedModeBanner: false,
           routerConfig: appRouter.config(
               navigatorObservers: () => [FlutterSmartDialog.observer]),
@@ -83,25 +101,6 @@ class MyApp extends ConsumerWidget {
 
         return appContent;
       },
-    );
-  }
-
-  /// 加载主题
-  ThemeData getTheme(ThemeData themeData) {
-    final lightTokens = MoonTokens.light.copyWith(
-      colors: MoonColors.light.copyWith(
-        piccolo: themeData.primaryColor,
-        textPrimary: themeData.primaryColor,
-        textSecondary: const Color(0xFF1D2129),
-        iconPrimary: themeData.primaryColor,
-        gohan: const Color(0xFFF7F8FA),
-        frieza: const Color(0xffC9CDD4),
-        frieza10: const Color(0xffF7F8FA),
-        frieza60: const Color(0xFF86909C),
-      ),
-    );
-    return themeData.copyWith(
-      extensions: <ThemeExtension<dynamic>>[MoonTheme(tokens: lightTokens)],
     );
   }
 }

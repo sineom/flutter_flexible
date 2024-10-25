@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_flexible/constants/themes/td_colors_ext.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:moon_design/moon_design.dart';
+import 'package:tdesign_flutter/tdesign_flutter.dart';
 
 import 'extended_img.dart';
 import 'grallery/gallery_item.m.dart';
@@ -30,7 +31,7 @@ class UploadImg extends StatelessWidget {
 
   final BorderRadius? borderRadius;
 
-   /// The image to display.
+  /// The image to display.
   final ImageProvider? image;
 
   /// 图片的适配方式
@@ -45,7 +46,9 @@ class UploadImg extends StatelessWidget {
       this.height,
       required this.onPreview,
       this.previewWidget,
-      this.borderRadius, this.image, this.fit = BoxFit.cover});
+      this.borderRadius,
+      this.image,
+      this.fit = BoxFit.cover});
 
   @override
   Widget build(BuildContext context) {
@@ -77,13 +80,13 @@ class UploadImg extends StatelessWidget {
           },
           child: Container(
             decoration: BoxDecoration(
-              color: context.moonColors!.frieza10,
+              color: TDTheme.of(context).grayColor6,
               borderRadius: BorderRadius.circular(8.r),
             ),
             padding: EdgeInsets.all(5.r),
             margin: EdgeInsets.all(10.r),
-            child: 
-             previewWidget??   ExtendedImg(
+            child: previewWidget ??
+                ExtendedImg(
                   image: image,
                   imageUrl: url,
                   sourceType: imageType,
@@ -105,12 +108,12 @@ class UploadImg extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.all(2.r),
               decoration: BoxDecoration(
-                color: context.moonColors!.frieza,
+                color: TDTheme.of(context).grayColor16,
                 borderRadius: BorderRadius.circular(16.r),
               ),
               child: Icon(
                 Icons.close,
-                color: context.moonColors!.goku,
+                color: Colors.white,
                 size: 20.r,
               ),
             ),

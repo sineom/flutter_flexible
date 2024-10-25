@@ -2,7 +2,7 @@
 /// @Author: sineom h.sineom@gmail.com
 /// @Date: 2024-10-10 13:56:49
 /// @LastEditors: sineom h.sineom@gmail.com
-/// @LastEditTime: 2024-10-10 17:38:42
+/// @LastEditTime: 2024-10-25 14:42:12
 /// @FilePath: /flutter_flexible/lib/pages/app_main/app_main.dart
 /// @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 ///
@@ -10,10 +10,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_flexible/components/image/extended_img.dart';
+import 'package:flutter_flexible/constants/themes/td_colors_ext.dart';
 import 'package:flutter_flexible/generated/assets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+import 'package:tdesign_flutter/tdesign_flutter.dart';
 
 import '../../components/exit_app_interceptor/exit_app_interceptor.dart';
 import 'home/home.dart';
@@ -21,7 +23,6 @@ import 'msg/hot.dart';
 import 'my/my_personal.dart';
 import 'product_publish/product_type.dart';
 import 'trade/search.dart';
-import 'package:moon_design/moon_design.dart';
 
 @RoutePage()
 class AppMainPage extends ConsumerStatefulWidget {
@@ -185,7 +186,7 @@ class _State extends ConsumerState<AppMainPage>
     // 使用 List.generate 确保正确获取索引
     final List<Widget> items = List.generate(appBottomBar.length, (index) {
       final item = appBottomBar[index];
-      return InkWell(
+      return GestureDetector(
         onTap: () => onTap(index), // 点击事件
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -203,8 +204,8 @@ class _State extends ConsumerState<AppMainPage>
               style: TextStyle(
                   fontSize: 11.sp,
                   color: currentIndex == index
-                      ? context.moonColors!.textSecondary
-                      : context.moonColors!.gohan),
+                      ? TDTheme.of(context).fontBlackColor10
+                      : TDTheme.of(context).fontBlackColor1),
             ), // 标题文字
           ],
         ),

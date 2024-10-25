@@ -6,7 +6,7 @@ part of 'product_publish.p.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$albumHash() => r'9e13539d1673af17e189b3ee2a99b815a7355027';
+String _$albumHash() => r'8f0b6dcd6b4a4aa3e264aebbdf819a7fca87d6b2';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -41,7 +41,7 @@ abstract class _$Album extends BuildlessAutoDisposeNotifier<List<AssetEntity>> {
 /// @Author: sineom h.sineom@gmail.com
 /// @Date: 2024-10-24 14:12:30
 /// @LastEditors: sineom h.sineom@gmail.com
-/// @LastEditTime: 2024-10-24 14:42:17
+/// @LastEditTime: 2024-10-24 16:35:38
 /// @FilePath: /flutter_flexible/lib/pages/app_main/product_publish/provider/product_publish.p.dart
 /// @Description: 商品发布的product
 /// @
@@ -56,7 +56,7 @@ const albumProvider = AlbumFamily();
 /// @Author: sineom h.sineom@gmail.com
 /// @Date: 2024-10-24 14:12:30
 /// @LastEditors: sineom h.sineom@gmail.com
-/// @LastEditTime: 2024-10-24 14:42:17
+/// @LastEditTime: 2024-10-24 16:35:38
 /// @FilePath: /flutter_flexible/lib/pages/app_main/product_publish/provider/product_publish.p.dart
 /// @Description: 商品发布的product
 /// @
@@ -69,7 +69,7 @@ class AlbumFamily extends Family<List<AssetEntity>> {
   /// @Author: sineom h.sineom@gmail.com
   /// @Date: 2024-10-24 14:12:30
   /// @LastEditors: sineom h.sineom@gmail.com
-  /// @LastEditTime: 2024-10-24 14:42:17
+  /// @LastEditTime: 2024-10-24 16:35:38
   /// @FilePath: /flutter_flexible/lib/pages/app_main/product_publish/provider/product_publish.p.dart
   /// @Description: 商品发布的product
   /// @
@@ -83,7 +83,7 @@ class AlbumFamily extends Family<List<AssetEntity>> {
   /// @Author: sineom h.sineom@gmail.com
   /// @Date: 2024-10-24 14:12:30
   /// @LastEditors: sineom h.sineom@gmail.com
-  /// @LastEditTime: 2024-10-24 14:42:17
+  /// @LastEditTime: 2024-10-24 16:35:38
   /// @FilePath: /flutter_flexible/lib/pages/app_main/product_publish/provider/product_publish.p.dart
   /// @Description: 商品发布的product
   /// @
@@ -127,7 +127,7 @@ class AlbumFamily extends Family<List<AssetEntity>> {
 /// @Author: sineom h.sineom@gmail.com
 /// @Date: 2024-10-24 14:12:30
 /// @LastEditors: sineom h.sineom@gmail.com
-/// @LastEditTime: 2024-10-24 14:42:17
+/// @LastEditTime: 2024-10-24 16:35:38
 /// @FilePath: /flutter_flexible/lib/pages/app_main/product_publish/provider/product_publish.p.dart
 /// @Description: 商品发布的product
 /// @
@@ -141,7 +141,7 @@ class AlbumProvider
   /// @Author: sineom h.sineom@gmail.com
   /// @Date: 2024-10-24 14:12:30
   /// @LastEditors: sineom h.sineom@gmail.com
-  /// @LastEditTime: 2024-10-24 14:42:17
+  /// @LastEditTime: 2024-10-24 16:35:38
   /// @FilePath: /flutter_flexible/lib/pages/app_main/product_publish/provider/product_publish.p.dart
   /// @Description: 商品发布的product
   /// @

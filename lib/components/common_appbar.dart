@@ -2,7 +2,7 @@
 /// @Author: sineom h.sineom@gmail.com
 /// @Date: 2024-10-24 17:13:43
 /// @LastEditors: sineom h.sineom@gmail.com
-/// @LastEditTime: 2024-10-24 17:16:20
+/// @LastEditTime: 2024-10-25 16:17:47
 /// @FilePath: /flutter_flexible/lib/components/common_appbar.dart
 /// @Description: A common AppBar component for the application.
 /// @
@@ -14,7 +14,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class CommonAppbar extends AppBar {
   CommonAppbar({
     super.key,
-    required String title,
+    String? title,
     Widget? titleWidget,
     bool? centerTitle,
     Color? backgroundColor,
@@ -22,9 +22,9 @@ class CommonAppbar extends AppBar {
     super.leading,
   }) : super(
           centerTitle: centerTitle ?? true, // Default to center title
-          backgroundColor: backgroundColor ?? Colors.white,
+          backgroundColor: backgroundColor,
           title: titleWidget ??
-              Text(title,
+              Text(title ?? "",
                   style: TextStyle(color: Colors.black, fontSize: 18.sp)),
         );
 }
