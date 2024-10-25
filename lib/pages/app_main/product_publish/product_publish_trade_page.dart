@@ -2,7 +2,7 @@
 /// @Author: sineom h.sineom@gmail.com
 /// @Date: 2024-10-25 15:21:51
 /// @LastEditors: sineom h.sineom@gmail.com
-/// @LastEditTime: 2024-10-25 16:25:12
+/// @LastEditTime: 2024-10-25 16:30:02
 /// @FilePath: /flutter_flexible/lib/pages/app_main/product_publish/product_publish_trade_page.dart
 /// @Description:
 /// @
@@ -101,10 +101,26 @@ class _ProductPublishTradePageState extends State<ProductPublishTradePage> {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(8.r),
                     ),
-                    child: Row(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text("注意事项",style: TextStyle(fontSize: 14.sp,color: TDTheme.of(context).fontBlackColor1),),
-                        Text("1、平台只支持担保交易，担保交易将收取买卖双方0.5%续费。\n2、买家确定收货后货款将打入卖家账户中。",)
+                        Text(
+                          "注意事项",
+                          style: TextStyle(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.normal,
+                            color: TDTheme.of(context).fontBlackColor10,
+                          ),
+                        ),
+                        SizedBox(height: 8.h),
+                        Text(
+                          "1、平台只支持担保交易，担保交易将收取买卖双方0.5%续费。\n2、买家确定收货后货款将打入卖家账户中。",
+                          style: TextStyle(
+                              fontSize: 14.sp,
+                              color: TDTheme.of(context).fontBlackColor9,
+                              height: 1.8),
+                        ),
                       ],
                     ),
                   )

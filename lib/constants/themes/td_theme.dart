@@ -2,7 +2,7 @@
 /// @Author: sineom h.sineom@gmail.com
 /// @Date: 2024-10-25 10:47:03
 /// @LastEditors: sineom h.sineom@gmail.com
-/// @LastEditTime: 2024-10-25 15:02:58
+/// @LastEditTime: 2024-10-25 16:25:56
 /// @FilePath: /flutter_flexible/lib/constants/themes/td_theme.dart
 /// @Description: 主题配置
 /// @
@@ -100,6 +100,7 @@ String tdTheme = '''
             "grayColor15": "#F3F3F5",
             "grayColor16": "#C9CDD4",
             "fontBlackColor1": "#86909C",
+            "fontBlackColor9": "#4E5969",
             "fontBlackColor10": "#1D2129",
             "fontBlackColor11": "#cc000000"
         }

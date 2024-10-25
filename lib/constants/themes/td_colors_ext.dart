@@ -2,7 +2,7 @@
 /// @Author: sineom h.sineom@gmail.com
 /// @Date: 2024-10-25 14:29:38
 /// @LastEditors: sineom h.sineom@gmail.com
-/// @LastEditTime: 2024-10-25 15:03:08
+/// @LastEditTime: 2024-10-25 16:26:14
 /// @FilePath: /flutter_flexible/lib/constants/themes/td_colors_ext.dart
 /// @Description:
 /// @
@@ -26,6 +26,10 @@ extension TDColorsExt on TDThemeData {
   /// #1D2129
   Color get fontBlackColor1 =>
       colorMap['fontBlackColor1'] ?? const Color(0xFF86909C);
+
+
+  /// #4E5969
+  Color get fontBlackColor9 => colorMap['fontBlackColor9'] ?? const Color(0xFF4E5969);
 
   /// #1D2129
   Color get fontBlackColor10 =>
