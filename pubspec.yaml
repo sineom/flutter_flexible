@@ -73,6 +73,8 @@ dependencies:
   tdesign_flutter: ^0.1.7
   # 国家国旗  https://pub.dev/packages/country_flags
   country_flags: ^3.0.0
+  # 下拉刷新  https://pub.dev/packages/easy_refresh 
+  easy_refresh: ^3.4.0
 
 
 dev_dependencies:

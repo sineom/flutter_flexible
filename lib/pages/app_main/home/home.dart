@@ -2,7 +2,7 @@
 /// @Author: sineom h.sineom@gmail.com
 /// @Date: 2024-10-14 11:00:48
 /// @LastEditors: sineom h.sineom@gmail.com
-/// @LastEditTime: 2024-10-25 17:28:41
+/// @LastEditTime: 2024-10-28 14:53:33
 /// @FilePath: /flutter_flexible/lib/pages/app_main/home/home.dart
 /// @Description:
 /// @
@@ -56,90 +56,93 @@ class _HomeState extends State<Home>
     super.build(context);
 
     return Scaffold(
-      body: Column(
+      body: Stack(
         children: [
-          Stack(
-            children: [
-              Container(
-                height: 300.h,
-                padding: EdgeInsets.fromLTRB(
-                    18.w, ScreenUtil().statusBarHeight, 18.w, 0),
-                decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        image: ExtendedAssetImageProvider(
-                            Assets.imagesIconHomeTopBg))),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Row(
-                      children: [
-                        Text.rich(TextSpan(children: [
-                          TextSpan(
-                            text: "Electronic",
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              padding: EdgeInsets.fromLTRB(
+                  18.w, ScreenUtil().statusBarHeight, 18.w, 0),
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: ExtendedAssetImageProvider(
+                          Assets.imagesIconHomeTopBg))),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    children: [
+                      Text.rich(TextSpan(children: [
+                        TextSpan(
+                          text: "Electronic",
+                          style: TextStyle(
+                              fontSize: 18.sp,
+                              fontWeight: FontWeight.w600,
+                              color: TDTheme.of(context).brandColor7),
+                        ),
+                        TextSpan(
+                            text: "Market",
                             style: TextStyle(
                                 fontSize: 18.sp,
                                 fontWeight: FontWeight.w600,
-                                color: TDTheme.of(context).brandColor7),
-                          ),
-                          TextSpan(
-                              text: "Market",
-                              style: TextStyle(
-                                  fontSize: 18.sp,
-                                  fontWeight: FontWeight.w600,
-                                  color: TDTheme.of(context).fontBlackColor10)),
-                        ])),
-                        const Spacer(),
-                        TDButton(
-                          type: TDButtonType.text,
-                          onTap: () {},
-                          iconWidget: Icon(
-                            Icons.location_on_rounded,
-                            size: 24.sp,
-                          ),
-                          text: "English",
-                          textStyle: TextStyle(
-                              fontSize: 16.sp,
-                              color: TDTheme.of(context).fontBlackColor10),
+                                color:
+                                    TDTheme.of(context).fontBlackColor10)),
+                      ])),
+                      const Spacer(),
+                      TDButton(
+                        type: TDButtonType.text,
+                        onTap: () {},
+                        iconWidget: Icon(
+                          Icons.location_on_rounded,
+                          size: 24.sp,
                         ),
-                        SizedBox(
-                          height: 10.h,
-                        ),
-                      ],
-                    ),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: TDTabBar(
-                        controller: _tabController,
-                        isScrollable: true,
-                        indicatorColor: TDTheme.of(context).brandColor7,
-                        showIndicator: true,
-                        labelColor: TDTheme.of(context).fontBlackColor10,
-                        unselectedLabelColor:
-                            TDTheme.of(context).fontBlackColor11,
-                        labelStyle: TextStyle(
-                            fontSize: 18.sp, fontWeight: FontWeight.bold),
-                        unselectedLabelStyle: TextStyle(
-                            fontSize: 18.sp, fontWeight: FontWeight.bold),
-                        tabs: tabs
-                            .map((e) => TDTab(
-                                  text: e,
-                                ))
-                            .toList(),
+                        text: "English",
+                        textStyle: TextStyle(
+                            fontSize: 16.sp,
+                            color: TDTheme.of(context).fontBlackColor10),
                       ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                    ],
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: TDTabBar(
+                      controller: _tabController,
+                      isScrollable: true,
+                      indicatorColor: TDTheme.of(context).brandColor7,
+                      showIndicator: true,
+                      labelColor: TDTheme.of(context).fontBlackColor10,
+                      unselectedLabelColor:
+                          TDTheme.of(context).fontBlackColor11,
+                      labelStyle: TextStyle(
+                          fontSize: 18.sp, fontWeight: FontWeight.bold),
+                      unselectedLabelStyle: TextStyle(
+                          fontSize: 18.sp, fontWeight: FontWeight.bold),
+                      tabs: tabs
+                          .map((e) => TDTab(
+                                text: e,
+                              ))
+                          .toList(),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              Positioned.fill(
-                top: 135.h,
-                child:
-                    TDTabBarView(controller: _tabController, children: const [
-                  HomeTabSellPage(),
-                  HomeTabSellPage(),
-                  HomeTabSellPage(),
-                ]),
-              )
-            ],
+            ),
+          ),
+          Positioned(
+            top: 135.h,
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: TDTabBarView(controller: _tabController, children: [
+              HomeTabSellPage(),
+              HomeTabSellPage(),
+              HomeTabSellPage(),
+            ]),
           )
         ],
       ),
